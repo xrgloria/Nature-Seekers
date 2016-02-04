@@ -2,4 +2,5 @@
 All changes to the project will be documented here
 
 ## 0.0.1 - 2016-02-03
-### init changelog
+### Added
+- init changelog added to repo
