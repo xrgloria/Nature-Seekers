@@ -1,0 +1,54 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+
+}
+
+.navbar {
+	border-radius: 0pt;
+}
+
+.content {
+	width: 80%;
+	margin: auto;
+}
+
+.locationSearch {
+	margin: auto;
+}
+
+.route {
+	min-height: 20%;
+	max-height: 75%;
+}
+
+.routeContent {
+	padding: 0pt;
+	overflow-y: scroll;
+}
+
+.route-A {
+	background-color: #ACC14E;
+	width: 100%;
+}
+
+.route-B {
+	width: 100%;
+}
+
+.fillHeight {
+	height: 100%;
+}
+
+.removeButton {
+	float: right;
+}
+#map {
+	width: 100%;
+	height: 75%;
+	margin: auto;
+}
+
