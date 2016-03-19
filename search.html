@@ -1,13 +1,24 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<!-- 
+Author: Mia Frederick
+Date 3/12/16
+IS 448
+Professor Sampath
+
+This document will fullfill the Search Use Case for Vestigetek Group Project. The CSS style used is mia.css
+The Validation will not be perfect, but it is due to the jQuery Library and the compiled JavaScript. 
+
+
+
+-->
+<html>
 <head>
 	<title>Test site</title>
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="./style/lavish-bootstrap.css">
-	<link rel="stylesheet" href="./style/main.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
+	<link rel="stylesheet" href="./style/lavish-bootstrap.css" />
+	<link rel="stylesheet" href="./style/mia.css" />
 	
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -42,15 +53,15 @@
                 <!-- will eventually do the actual search functions, have to create a search.php -->
 				<form action="./search.php" method="post">
 					<label for="cityName">City Name</label>
-					<input type="text" class="form-control" name="city" id="cityName" value="Baltimore" required="false"/>
+					<input type="text" class="form-control" name="city" id="cityName" value="Baltimore" />
 					<label for="stateName">State</label>
-					<input type="text" class="form-control" name="state" id="stateName" value="Maryland" required="false"/>
+					<input type="text" class="form-control" name="state" id="stateName" value="Maryland" />
                     <label for="zipcode">ZipCode</label>
-					<input type="text" class="form-control" name="zip" id="zipcode" required="false"/>
+					<input type="text" class="form-control" name="zip" id="zipcode" />
 					<label for="longitude">Longitude</label>
-					<input type="text" class="form-control" name="long" id="longitude" required="false"/>
+					<input type="text" class="form-control" name="long" id="longitude" />
                     <label for="latitude">Latitude</label>
-					<input type="text" class="form-control" name="lat" id="latitude" required="false"/>
+					<input type="text" class="form-control" name="lat" id="latitude" />
 					<br />
 				
 					<button type="submit" class="btn btn-primary" onclick="window.location.href='./search.php'">Submit</button>

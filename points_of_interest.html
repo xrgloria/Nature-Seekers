@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nature Seekers | Add Points of Interest</title>
+	
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="style/lavish-bootstrap.css">
+		<link rel="stylesheet" href="style/gloria.css">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
+	
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABvCBMSTZPK8Wllny5VJVD0cujfAaWZYk&callback=initMap" async defer></script>
+		<script	src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=drawing"></script>
+		<script>
+			var map;
+			var marker;
+			
+			var drawingManager = new google.maps.drawing.DrawingManager();
+			
+			google.maps.event.addDomListener(window, 'load', initMap);
+			
+			function initMap() {
+				map = new google.maps.Map(document.getElementById('map'), {
+					center: {lat: 36.098967, lng: -112.100166},
+					zoom: 17
+				});
+				
+				var position = new google.maps.LatLng(36.098967, -112.100166);
+				//var position2 = new google.maps.LatLng(36.098767, -112.100166);
+				
+				var string = "<div><p><strong>Name: </strong>Devil\'s Rock <br />" +
+					"<strong>Activity: </strong>Rock Climbing <br />" + 
+					"<strong>Description: </strong> Difficulty: 10a</p></div>";
+
+				infoWindow = new google.maps.InfoWindow();
+				
+				infoWindow.setOptions({
+					content: string,
+					position: position,
+				});
+				infoWindow.open(map);
+				
+				marker = new google.maps.Marker({
+						position: position,
+						map: map
+					});
+				
+				marker.setMap(map);
+			}
+			
+			function drawRec() {
+				//Setting options for the Drawing Tool. In our case, enabling Polygon shape.
+				drawingManager.setOptions({
+					drawingMode : google.maps.drawing.OverlayType.RECTANGLE,
+					drawingControl : true,
+					drawingControlOptions : {
+						position : google.maps.ControlPosition.TOP_CENTER,
+						drawingModes : [ google.maps.drawing.OverlayType.RECTANGLE ]
+					},
+					rectangleOptions : {
+						strokeColor : '#6c6c6c',
+						strokeWeight : 3.5,
+						fillColor : '#926239',
+						fillOpacity : 0.6,
+						editable: true,
+						draggable: true
+					}   
+				});
+				// Loading the drawing Tool in the Map.
+				drawingManager.setMap(map);
+			}
+		</script>
+	</head>
+	
+	<body>	
+		<div class="navbar navbar-inverse">
+			<span class="navbar-brand">
+				Nature Seekers
+			</span>
+			<ul class="nav navbar-nav">
+				<li><a href="#">Home</a></li>
+				<li><a href="search.html">Search</a></li>
+				<li><a href="points_of_interest.html">Add Markers</a></li>
+				<li><a href="route.html">View Route</a></li>
+			</ul>
+		</div>
+		<div class="row content">
+			<div class="col-sm-3">
+				<div class="panel panel-primary" >
+					<div class="panel-heading">
+						<h3>Points of Interest</h3>
+					</div>
+					<div class="panel-body poi_select">
+						<div class="poi">
+							<p>
+								<strong>Name: </strong>Devil's Rock <br />
+								<strong>Activity: </strong>Rock Climbing <br />
+								<strong>Description: </strong>Difficulty: 10a
+								<span>
+									<!--button type="submit" class="btn btn-primary btn-xs pull-right">Remove</button-->
+									<button type="button" class="btn btn-primary btn-xs pull-right">View</button>
+								</span>
+							</p>
+						</div>
+						<button type="button" class="btn btn-primary" onclick="drawRec();">Create New Point of Interest</button>
+					</div>
+				</div>
+				
+				<div class="panel panel-primary" >
+					<div class="panel-heading">
+						<h3>Create New Point of Interest</h3>
+					</div>
+					<div class="panel-body">
+						<form action="#" method="POST">
+							<label for="poiname">Name</label>
+							<input type="text" class="form-control" name="poi_name" id="poi_name" required="true"/>
+							<label for="sport">Sport</label>
+							<input type="text" class="form-control" name="sport" id="sport" required="true"/>
+							<label for="description">Description</label>
+							<textarea class="form-control" rows="5" name="description" id="description"></textarea>
+							<div class="radio">
+								<label><input type="radio" name="privacy" value="public">Public</label>
+							</div>
+							<div class="radio">
+							<label><input type="radio" name="privacy" value="private">Private</label>
+							</div>
+							<br />
+							<button type="submit" class="btn btn-primary">Create</button>
+							<button type="submit" class="btn btn-primary">Discard</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-9">
+				<div id="map"></div>
+			</div>
+		</div>
+		<!--footer>I'M A FOOTER</footer-->
+	</body>
+</html>

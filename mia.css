@@ -1,0 +1,33 @@
+/*
+Author: Mia Frederick
+Date 3/12/16
+IS 448
+Professor Sampath
+
+This document is the CSS Style sheet for the search html. 
+
+*/
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+
+}
+
+.navbar {
+	border-radius: 0pt;
+}
+
+.content {
+	width: 80%;
+	margin: auto;
+}
+
+#map {
+	width: 80%;
+	height: 75%;
+	margin: auto;
+}
+
