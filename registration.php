@@ -18,13 +18,18 @@ Last Date of Modification: 4/3/16 -->
 	#connect to mysql database
 	$db = mysql_connect("natureseekers.ddns.net","root","root");
 
-	if(!$db)
-		exit("Error - could not connect to MySQL");
+	if(!$db) {
+		echo 'Could not connect using natureseekers.ddns.net: ' . mysql_error();
+		
+		$db = mysql_connect("localhost","root","root");
+		if(!$db)
+			die('Could not connect using localhost: ' . mysql_error());
+	}	
 
 	#select database root
-	$er = mysql_select_db("root");
+	$er = mysql_select_db("natureSeekers");
 	if(!$er)
-		exit("Error - could not select cars database");
+		exit("Error - could not select database");
 
 	#get the parameter from the HTML form that this PHP program is connected to
 	#since data from the form is sent by the HTTP POST action, use the $_POST array here
