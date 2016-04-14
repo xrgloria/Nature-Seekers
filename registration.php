@@ -39,7 +39,7 @@ Last Date of Modification: 4/3/16 -->
 	$last_name = htmlspecialchars($_POST['last_name']); 
 	$user_name = htmlspecialchars($_POST['user_name']); 
 	$password = htmlspecialchars($_POST['password']); 
-	$email = htmlspecialchars($_POST['email']); 
+	$user_email = htmlspecialchars($_POST['user_email']); 
 	
 	$first_name = mysql_real_escape_string($first_name);
 	$last_name = mysql_real_escape_string($last_name);
