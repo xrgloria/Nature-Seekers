@@ -16,7 +16,7 @@ Last Date of Modification: 4/3/16 -->
 
 <?php
 	#connect to mysql database
-	$db = mysql_connect("natureseekers.ddns.net","root","root");
+	$db = mysql_connect("localhost","root","root");
 
 	if(!$db) {
 		echo 'Could not connect using natureseekers.ddns.net: ' . mysql_error();
