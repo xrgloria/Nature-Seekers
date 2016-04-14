@@ -45,9 +45,9 @@
 	
 	#If statement that assigns the proper destination to $newURL depending on the login result
 	if($num_rows == 1){
-		$newURL = "../search.html";
+		$newURL = "search.html";
 	}else{
-		$newURL = "../login.html";
+		$newURL = "login.html";
 	}
 	
 	#Calls the Redirect function
