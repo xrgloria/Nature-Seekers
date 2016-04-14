@@ -50,13 +50,14 @@ Last Date of Modification: 4/3/16 -->
 <?php
 	#construct a query
 	
-	$constructed_query = "INSERT INTO blog (first_name, last_name, user_name, password, user_email) values ('$first_name', '$last_name', '$user_name', '$password', '$user_email')";
+	$constructed_query = "INSERT INTO USERS (first_name, last_name, user_name, password, user_email) values ('$first_name', '$last_name', '$user_name', '$password', '$user_email')";
 						  
 	#sanity check: print query to see if constructed query is correct
 	#print("CHECK PROGRAM IS WORKING MESSAGE: The query is: $constructed_query</br>");
 
 	#Execute query
 	$result = mysql_query($constructed_query);
+	echo $result;
 	
 ?>
 </body>
