@@ -14,7 +14,7 @@ The Validation will not be perfect, but it is due to the jQuery Library and the 
 -->
 <html>
 <head>
-	<title>Test site</title>
+	<title>Test Search site</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
 	<link rel="stylesheet" href="./style/lavish-bootstrap.css" />
@@ -34,9 +34,9 @@ The Validation will not be perfect, but it is due to the jQuery Library and the 
 		</span>
 		<ul class="nav navbar-nav">
 			<li><a href="./login.php">Home</a></li>
-			<li><a href="./route.html">View Map</a></li>
+			<li class="active"><a href="./search.html">View Map</a></li>
 			<li><a href="./points_of_interest.html ">Add Markers</a></li>
-			<li class="active"><a href="#">View Route</a></li>
+			<li ><a href="#">View Route</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 		  <li><a href="./logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -51,7 +51,7 @@ The Validation will not be perfect, but it is due to the jQuery Library and the 
 			</div>
 			<div class="panel-body">
                 <!-- will eventually do the actual search functions, have to create a search.php -->
-				<form action="./search.php" method="post">
+				<form action="" method="post">
 					<label for="cityName">City Name</label>
 					<input type="text" class="form-control" name="city" id="cityName" value="Baltimore" />
 					<label for="stateName">State</label>

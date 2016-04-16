@@ -1,3 +1,16 @@
+/*-----------------------------------------------------------------------------
+*Created by Gloria Ngo
+*
+*IS448 - Markup Languages
+*Deliverable 4 - HTML/CSS
+*Sreedevi Sampath
+*
+*Description: This is the standardizing css file that will make the pie.html
+*	have a uniform look to all of its elements
+*
+*File Contents: css
+-----------------------------------------------------------------------------*/
+
 html, body {
 	height: 100%;
 }

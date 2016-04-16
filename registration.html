@@ -19,9 +19,9 @@ Last Date of Modification: 3/18/16 -->
 		<meta name="viewport" content="width = device-width, initial-scale = 1"/>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
 		
-	<link rel="stylesheet" type="text/css" href="lavish-bootstrap.css"/>
-	<link rel="stylesheet" type="text/css" href="main.css"/>
-	<link rel="stylesheet" type="text/css" href="mark.css"/>
+	<link rel="stylesheet" type="text/css" href="./style/lavish-bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="./style/main.css"/>
+	<link rel="stylesheet" type="text/css" href="./style/mark.css"/>
 
 	<title> Registration</title>
 
@@ -34,12 +34,6 @@ Last Date of Modification: 3/18/16 -->
 		</span>
 		<ul class="nav navbar-nav">
 			<li><a href="login.php">Home</a></li>
-			<li><a href="route.html">View Map</a></li>
-			<li><a href="points_of_interest">Add Markers</a></li>
-			<li class="active"><a href="route.html">View Route</a></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-		  <li><a href="./logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 		</ul>
 	</div>
 </div>
@@ -48,53 +42,35 @@ Last Date of Modification: 3/18/16 -->
 <h1> Register </h1>
 
 <div class = 'submission_content'>	
-	<form action = "">
+	<form action = "registration.php" method="post">
 		<p>
-			First Name: <input type = "text" name = "first_name" size = "25" />
+			First Name: <input type = "text" name = "first_name" size = "20" />
 		</p>
-	</form>
-	
-	<form action = "">
 		<p>
-			Last Name: <input type = "text" name = "last_name" size = "25" />
+			Last Name: <input type = "text" name = "last_name" size = "30" />
 		</p>
-	</form>
-	
-	<form action = "">
 		<p>
 			Username: <input type = "text" name = "user_name" size = "25" />
 		</p>
-	</form>
-	
-	<form action = "">
-		<p>
-			Password: <input type = "text" name = "password" size = "25" />
-		</p>
-	</form>
-	
-	<form action = "">
-		<p>
-			Retype Password: <input type = "text" name = "retyped_password" size = "25" />
-		</p>
-	</form>
-	
-	<form action = "">
-		<p>
-			Email Address: <input type = "text" name = "email" size = "25" />
-		</p>
-	</form>
-	
-	<form action = "">
-		<p>
-			Retype Email Address: <input type = "text" name = "retyped_email" size = "25" />
-		</p>
-	</form>
-</div>
 
-<div class = 'button'>
-	<form action = "registration.html">
 		<p>
-			<input type = "submit" value= "Register" />
+			Password: <input type = "password" name = "password" size = "16" />
+		</p>
+
+		<p>
+			Retype Password: <input type = "password" name = "retyped_password" size = "16" />
+		</p>
+
+		<p>
+			Email Address: <input type = "text" name = "user_email" size = "30" />
+		</p>
+
+		<p>
+			Retype Email Address: <input type = "text" name = "retyped_email" size = "20" />
+		</p>
+		<p>
+			<input type = "submit" value= "Submit" />
+			<input type = "reset" value= "Reset" />
 		</p>
 	</form>
 </div>

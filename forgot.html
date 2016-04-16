@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- 
+Author: Steven Nguyen
+Date last modified: 3/20/2016
+IS 448
+Professor Sampath
+This document will be used to allow users to retrieve their forgotten username and 
+password. Users must input a valid email address to have the information associated 
+with that email address sent to it.
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<!-- Title of the webpage -->
+		<title>
+			Account Retrieval - Nature Seekers
+		</title>
+		
+		<!-- CSS styling -->
+		<link rel="stylesheet" href="style/lavish-bootstrap.css"/>
+		<link rel="stylesheet" href="style/steven.css"/>
+		
+	</head>
+	
+	<body>
+		
+		<!-- Navigation bar -->
+		<div class="navbar navbar-inverse" style="border-radius:0pt;">
+			<div class="content">
+				<span class="navbar-brand">
+					Nature Seekers
+				</span>
+				<ul class="nav navbar-nav">
+					<li><a href="./login.html">Home</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- First header of the webpage -->
+		<h1 class="centerhead">
+		<b>Forgot your Username/Password?</b>
+		</h1>
+		
+		<!-- Details on the webpage's purpose -->
+		<p class="centerText">
+			If you've forgotten your username or password, please input the email address that 
+			is associated with your account below. Afterwards, you will receive an email from 
+			us, including your username and password.
+		</p>
+		
+		<!-- Forgotten information email form (PHP not yet implemented) -->
+		<form action="">
+		<p class="centerText">
+			<b>Email address:</b> <input type="text" name="Email" size="25"/>
+			<form action="identify.php">
+				<input type="submit" value="Email Me"/>
+			</form>
+		</p>
+		
+		</form>
+
+	</body>
+</html>
