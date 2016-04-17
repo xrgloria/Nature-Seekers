@@ -10,24 +10,6 @@ if(!isset($_SESSION['user'])){
 }
 ?>
 
-<?php
-/*If a get request is passed in with a route ID autopopulate with that information*/
-if(isset($_GET['routeID']))
-{
-	$db = mysql_connect("localhost","root","root");
-	
-	if(!$db)
-		exit("Error - could not connect to MySQL");
-	
-	#select database natureseekers
-	$er = mysql_select_db("natureseekers");
-	if(!$er)
-		exit("Error - could not select database");
-	$routeID = mysql_real_escape_string(htmlspecialchars($_GET['routeID']));
-	$selectQuery = "SELECT * FROM ROUTE OVERLAYS WHERE ROUTE_ID = $routeID";
-	$result = mysql_query($selectQuery);
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,31 +51,47 @@ if(isset($_GET['routeID']))
 			</div>
 			<div class="panel-body routeContent">
 				<?php
-				$divClass = True;
-				if (mysql_num_rows($result) > 0) {
-					while($row = mysql_fetch_array($result)) {
-						echo '<div class="' . ($divClass) ? 'route-A' : 'route-B' . '">';
-						$overlayID = $row['OVERLAY_ID'];
-						$activityQuery = "SELECT A.ACTIVITY_NAME FROM ACTIVITIES A
-										  JOIN OVERLAY_ACTIVITES O
-										  ON A.ACTIVITY_ID = O.ACTIVITY_ID
-										  WHERE O.OVERLAY_ID = $overlayID";
-						$activityResults = mysql_query($activityQuery);
-						if (mysql_num_rows($activityResults) > 0) {
-							while($activityRow = mysql_fetch_array($activityResults)) {
-								echo $activityRow['ACTIVITY_NAME'] . ' ';
-							}
-						} else {
-						   
-						}
-						echo '<br />';
-						echo '<button type="button" class="btn btn-primary btn-xs removeButton">Remove</button><br />';
-						$divClass = !$divClass;
-						echo '<input type="hidden" name="overlayID[]" value="$overlayID"/>';
-					}
+				if(isset($_GET['routeID']))
+				{
+					$db = mysql_connect("localhost","root","root");
 					
-				} else {
-				   
+					if(!$db)
+						exit("Error - could not connect to MySQL");
+					
+					#select database natureseekers
+					$er = mysql_select_db("natureseekers");
+					if(!$er)
+						exit("Error - could not select database");
+					$routeID = mysql_real_escape_string(htmlspecialchars($_GET['routeID']));
+					$selectQuery = "SELECT * FROM ROUTE OVERLAYS WHERE ROUTE_ID = $routeID";
+					$result = mysql_query($selectQuery);
+					
+					$divClass = True;
+					if (mysql_num_rows($result) > 0) {
+						while($row = mysql_fetch_array($result)) {
+							echo '<div class="' . ($divClass) ? 'route-A' : 'route-B' . '">';
+							$overlayID = $row['OVERLAY_ID'];
+							$activityQuery = "SELECT A.ACTIVITY_NAME FROM ACTIVITIES A
+											  JOIN OVERLAY_ACTIVITES O
+											  ON A.ACTIVITY_ID = O.ACTIVITY_ID
+											  WHERE O.OVERLAY_ID = $overlayID";
+							$activityResults = mysql_query($activityQuery);
+							if (mysql_num_rows($activityResults) > 0) {
+								while($activityRow = mysql_fetch_array($activityResults)) {
+									echo $activityRow['ACTIVITY_NAME'] . ' ';
+								}
+							} else {
+							   
+							}
+							echo '<br />';
+							echo '<button type="button" class="btn btn-primary btn-xs removeButton">Remove</button><br />';
+							$divClass = !$divClass;
+							echo '<input type="hidden" name="overlayID[]" value="$overlayID"/>';
+						}
+						
+					} else {
+					   
+					}
 				}
 				?>
 				<div class="route-A">
