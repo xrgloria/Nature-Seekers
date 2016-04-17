@@ -12,11 +12,11 @@
 	}
 	
 	#connect to mysql database
-	$db = mysql_connect("natureseekers.ddns.net","root","root");
+	$db = mysql_connect("localhost","root","root");
 	if(!$db)
 		exit("Error - could not connect to MySQL");
 	
-	#select database snguyen5
+	#select database natureSeekers
 	$er = mysql_select_db("natureSeekers");
 	if(!$er)
 		exit("Error - could not select database");
@@ -27,7 +27,7 @@
 	
 	#select * from users where username = '$uname';
 	#Constructs the query to match the login information
-	$constructed_query = "select * from users where user_name = '$uname' and password = '$pword'";
+	$constructed_query = "select * from USERS where user_name = '$uname' and password = '$pword'";
 	
 	#Execute query
 	$login_result = mysql_query($constructed_query);
