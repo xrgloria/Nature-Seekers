@@ -16,12 +16,12 @@ Last Date of Modification: 4/3/16 -->
 
 <?php
 	#connect to mysql database
-	$db = mysql_connect("localhost","root","root");
+	$db = mysql_connect("studentdb-maria.gl.umbc.edu","markcir1","markcir1");
 
 	if(!$db) {
-		echo 'Could not connect using natureseekers.ddns.net: ' . mysql_error();
+		echo 'Could not connect using studentdb-maria.gl.umbc.edu: ' . mysql_error();
 		
-		$db = mysql_connect("localhost","root","root");
+		$db = mysql_connect("studentdb-maria.gl.umbc.edu","markcir1","markcir1");
 		if(!$db)
 			die('Could not connect using localhost: ' . mysql_error());
 	}	
