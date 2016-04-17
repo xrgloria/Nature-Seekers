@@ -82,6 +82,7 @@ if(isset($_GET['routeID']))
 						if (mysql_num_rows($activityResults) > 0) {
 							while($activityRow = mysql_fetch_array($activityResults)) {
 								echo $activityRow['ACTIVITY_NAME'] . ' ';
+							}
 						} else {
 						   
 						}
