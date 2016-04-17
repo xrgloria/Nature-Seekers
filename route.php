@@ -94,20 +94,11 @@ if(!isset($_SESSION['user'])){
 					}
 				}
 				?>
-				<div class="route-A">
-					Kayaking-Whitewater<br/>
-					Length: 2.4 mi
-					<button type="button" class="btn btn-primary btn-xs removeButton">Remove</button><br />
-				</div>
-				<div class="route-B">
-					Walking/Biking<br />
-					Length: 5 mi
-					<button type="button" class="btn btn-primary btn-xs removeButton">Remove</button><br />
-				</div>
 			</div>
 		</div>
+			<!--To be used for javascript to add overlays-->
 			<input type="hidden" name="overlayID[]" />
-			<input type="submit"></input>
+			<input type="submit" class="btn btn-primary btn-xs"></input>
 		</form>
 	</div>
 	<div class="col-sm-9 fillHeight">
