@@ -88,7 +88,7 @@ if(isset($_GET['routeID']))
 						}
 						echo '<br />';
 						echo '<button type="button" class="btn btn-primary btn-xs removeButton">Remove</button><br />';
-						$divClass = !$divClass
+						$divClass = !$divClass;
 						echo '<input type="hidden" name="overlayID[]" value="$overlayID"/>';
 					}
 					
