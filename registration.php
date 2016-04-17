@@ -33,7 +33,6 @@ Last Date of Modification: 4/3/16 -->
 
 	#get the parameter from the HTML form that this PHP program is connected to
 	#since data from the form is sent by the HTTP POST action, use the $_POST array here
-	echo "WTF<br />";
 	echo $_POST['first_name'];
 	$first_name = htmlspecialchars($_POST['first_name']); 
 	$last_name = htmlspecialchars($_POST['last_name']); 
@@ -54,12 +53,13 @@ Last Date of Modification: 4/3/16 -->
 	$constructed_query = "INSERT INTO USERS (first_name, last_name, user_name, password, user_email) values ('$first_name', '$last_name', '$user_name', '$password', '$user_email')";
 						  
 	#sanity check: print query to see if constructed query is correct
-	print("CHECK PROGRAM IS WORKING MESSAGE: The query is: $constructed_query</br>");
+	#print("CHECK PROGRAM IS WORKING MESSAGE: The query is: $constructed_query</br>");
 
 	#Execute query
 	$result = mysql_query($constructed_query);
 	echo $result;
 	
+	header('Location: ./login.php');
 ?>
 </body>
 </html>
