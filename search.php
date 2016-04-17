@@ -51,9 +51,9 @@ the user if the match was found or not.
                     <input type="text" class="form-control" name="state" id="stateName" value="Maryland" />
                     <label for="zipcode">ZipCode</label>
                     <input type="text" class="form-control" name="zip" id="zipcode" />
-                     <label for="latitude">Latitude</label>
+                     <label for="latitude">Latitude in Signed Degrees Format</label>
                     <input type="text" class="form-control" name="latitude" id="latitude" />
-                    <label for="longitude">Longitude</label>
+                    <label for="longitude">Longitude in Signed Degrees Format</label>
                     <input type="text" class="form-control" name="longitude" id="longitude" />
                     <br />
                     <input name="submit" type="submit" name = "submit"/>
