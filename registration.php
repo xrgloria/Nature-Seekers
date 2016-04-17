@@ -59,7 +59,7 @@ Last Date of Modification: 4/3/16 -->
 	$result = mysql_query($constructed_query);
 	echo $result;
 	
-	header('Location: ./login.html');
+	header('Location: ./search.php');
 ?>
 </body>
 </html>
