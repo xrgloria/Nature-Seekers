@@ -3,6 +3,7 @@
 -->
 <?php
 /*Handles checking the user being logged in*/
+ini_set('display_errors', 1);
 session_start();
 if(!isset($_SESSION['user'])){
 	header('Location: ./login.php');
