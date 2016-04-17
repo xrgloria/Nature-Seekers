@@ -3,11 +3,11 @@
 -->
 <?php
 /*Handles checking the user being logged in*/
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 session_start();
 if(!isset($_SESSION['user'])){
 	header('Location: ./login.php');
-}
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +59,7 @@ if(!isset($_SESSION['user'])){
 						exit("Error - could not connect to MySQL");
 					
 					#select database natureseekers
-					$er = mysql_select_db("natureseekers");
+					$er = mysql_select_db("natureSeekers");
 					if(!$er)
 						exit("Error - could not select database");
 					$routeID = mysql_real_escape_string(htmlspecialchars($_GET['routeID']));
