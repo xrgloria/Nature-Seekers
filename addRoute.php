@@ -59,7 +59,7 @@ foreach ($overlays as $entry)
 <br /><br />
 <div class="content">
 Your route has been succesfully created. Here is the link to the route
-<a href="www.natureseekers.ddns.net/route.php?routeID=<?php echo $routeID ?>">
+<a href="/route.php?routeID=<?php echo $routeID ?>">
 	www.natureseekers.ddns.net/route.php?routeID=<?php echo $routeID ?>
 </a>
 </div>
