@@ -1,8 +1,34 @@
 <!--Luke Schubert
 	IS448
 -->
-<!DOCTYPE html>
+<?php
+/*Handles checking the user being logged in*/
+session_start();
+if(!isset($_SESSION['user'])){
+	header('Location: ./login.php');
+}
+?>
 
+<?php
+/*If a get request is passed in with a route ID autopopulate with that information*/
+if(isset($_GET['routeID']))
+{
+	$db = mysql_connect("localhost","root","root");
+	
+	if(!$db)
+		exit("Error - could not connect to MySQL");
+	
+	#select database natureseekers
+	$er = mysql_select_db("natureseekers");
+	if(!$er)
+		exit("Error - could not select database");
+	$routeID = mysql_real_escape_string(htmlspecialchars($_GET['routeID']));
+	$selectQuery = "SELECT * FROM ROUTE OVERLAYS WHERE ROUTE_ID = $routeID";
+	$result = mysql_query($selectQuery);
+}
+?>
+<!DOCTYPE html>
+<html>
 <head>
 	<title>Test site</title>
 	<!-- Latest compiled and minified CSS -->
@@ -24,7 +50,7 @@
 		</span>
 		<ul class="nav navbar-nav">
 			<li><a href="./login.html">Home</a></li>
-			<li><a href="./search.html">Search Map</a></li>
+			<li><a href="./search.php">Search Map</a></li>
 			<li><a href="./points_of_interest.html">Add Markers</a></li>
 			<li class="active"><a href="#">View Route</a></li>
 		</ul>
@@ -35,11 +61,39 @@
 </div>
 <div class="row content fillHeight">
 	<div class="col-sm-3">
+		<form method="post" action="addRoute.php">
 		<div class="panel panel-primary route">
 			<div class="panel-heading">
 				<h3>Overlays</h3>
 			</div>
 			<div class="panel-body routeContent">
+				<?php
+				$divClass = True;
+				if (mysql_num_rows($result) > 0) {
+					while($row = mysql_fetch_array($result)) {
+						echo '<div class="' . ($divClass) ? 'route-A' : 'route-B' . '">';
+						$overlayID = $row['OVERLAY_ID'];
+						$activityQuery = "SELECT A.ACTIVITY_NAME FROM ACTIVITIES A
+										  JOIN OVERLAY_ACTIVITES O
+										  ON A.ACTIVITY_ID = O.ACTIVITY_ID
+										  WHERE O.OVERLAY_ID = $overlayID";
+						$activityResults = mysql_query($activityQuery);
+						if (mysql_num_rows($activityResults) > 0) {
+							while($activityRow = mysql_fetch_array($activityResults)) {
+								echo $activityRow['ACTIVITY_NAME'] . ' ';
+						} else {
+						   
+						}
+						echo '<br />';
+						echo '<button type="button" class="btn btn-primary btn-xs removeButton">Remove</button><br />';
+						$divClass = !$divClass
+						echo '<input type="hidden" name="overlayID[]" value="$overlayID"/>';
+					}
+					
+				} else {
+				   
+				}
+				?>
 				<div class="route-A">
 					Kayaking-Whitewater<br/>
 					Length: 2.4 mi
@@ -52,15 +106,15 @@
 				</div>
 			</div>
 		</div>
+			<input type="hidden" name="overlayID[]" />
+			<input type="submit"></input>
+		</form>
 	</div>
 	<div class="col-sm-9 fillHeight">
 		<div id="map"></div>
 	</div>
 </div>
-<form method="post" action="addRoute.php">
-	<input type="hidden" name="overlayID[]" />
-	<input type="submit">Create Route</input>
-</form>
+
 <script src="./js/viewMap.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABvCBMSTZPK8Wllny5VJVD0cujfAaWZYk&callback=initMap&libraries=geometry" async defer></script>
 </body>
