@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <!-- 
 Author: Mia Frederick
-Date 3/12/16
+Date 4/17/2016
 IS 448
 Professor Sampath
 This document will fullfill the Search Use Case for Vestigetek Group Project. The CSS style used is mia.css
-The Validation will not be perfect, but it is due to the jQuery Library and the compiled JavaScript. 
+Currently, without the aid of javascript, it uses php to connect to the database, look for any matches on longitude/latitude that the user puts in, and tells
+the user if the match was found or not. 
 -->
 <html>
 <head>
@@ -84,17 +85,23 @@ The Validation will not be perfect, but it is due to the jQuery Library and the 
 	//sql query
 	$searchResults = mysql_query("SELECT * FROM POINTS");
                 
+    $resultFound = false;             
 	//goes through all of the entries in the table 
 	while ($row_array = mysql_fetch_array($searchResults)) {
 		$latitude  = $row_array['latitude'];
 		$longitude = $row_array['longitude'];
-		//looks for results that match
 		
+		//looks for results that match
 		if ($latitude == $userLatitude and $longitude == $userLongitude) {
-			print "$latitude , $longitude";
+			print "A match was found at latitude: ". $latitude ." longitude: ". $longitude;
+            $resultFound=true;
 		}
 
 	}
+        //if no results were found, then it tells the user that
+        if(!$resultFound)
+            print "No points were found that matched those coordinates.";
+        
 
 	?>
                </div>
