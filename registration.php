@@ -11,6 +11,7 @@ Last Date of Modification: 4/3/16 -->
 <head>
 	<title>Registration PHP</title>
 	<!--<link rel="stylesheet" type="text/css" href="mark.css" /> -->
+	<!--<script type = "text/javascript"  src = "registration.js" > </script> -->
 </head>
 <body>
 
@@ -27,39 +28,43 @@ Last Date of Modification: 4/3/16 -->
 	}	
 
 	#select database root
-	$er = mysql_select_db("natureSeekers");
+	$er = mysql_select_db("markcir1");
 	if(!$er)
 		exit("Error - could not select database");
 
 	#get the parameter from the HTML form that this PHP program is connected to
 	#since data from the form is sent by the HTTP POST action, use the $_POST array here
-	echo $_POST['first_name'];
+	#echo $_POST['first_name'];
 	$first_name = htmlspecialchars($_POST['first_name']); 
 	$last_name = htmlspecialchars($_POST['last_name']); 
 	$user_name = htmlspecialchars($_POST['user_name']); 
 	$password = htmlspecialchars($_POST['password']); 
+	$retyped_password = htmlspecialchars($_POST['password']); 
 	$user_email = htmlspecialchars($_POST['user_email']); 
+	$retyped_email = htmlspecialchars($_POST['user_email']);
 	
 	$first_name = mysql_real_escape_string($first_name);
 	$last_name = mysql_real_escape_string($last_name);
 	$user_name = mysql_real_escape_string($user_name);
 	$password = mysql_real_escape_string($password);
+	$retyped_password = mysql_real_escape_string($password);
 	$user_email = mysql_real_escape_string($user_email);
+	$retyped_email = mysql_real_escape_string($user_email);
 ?>
 
 <?php
 	#construct a query
 	
-	$constructed_query = "INSERT INTO USERS (first_name, last_name, user_name, password, user_email) values ('$first_name', '$last_name', '$user_name', '$password', '$user_email')";
+	$constructed_query = "INSERT INTO USERS (first_name, last_name, user_name, password, retyped_password, user_email, retyped_email) values ('$first_name', '$last_name', '$user_name', '$password', '$retyped_password', '$user_email', '$retyped_email')";
 						  
 	#sanity check: print query to see if constructed query is correct
 	#print("CHECK PROGRAM IS WORKING MESSAGE: The query is: $constructed_query</br>");
 
 	#Execute query
 	$result = mysql_query($constructed_query);
-	echo $result;
+	#echo $result;
 	
-	header('Location: ./search.php');
+	//header('Location: ./search.php');
 ?>
 </body>
 </html>
