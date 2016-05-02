@@ -37,7 +37,7 @@ if (mysql_num_rows($result) > 0) {
 		$activityResult = mysql_query($activityQuery);
 		$activities = array();
 		while($activityRow = mysql_fetch_array($activtyResult)) {
-			array_push($activites, $activityRow['ACTIVITY_NAME');
+			array_push($activites, $activityRow['ACTIVITY_NAME']);
 		}
 		$json[$id]['activities'] = $activities;
 		$pointQuery = "SELECT LATITUDE, LONGITUDE FROM POINTS WHERE OVERLAY_ID = $id;";
