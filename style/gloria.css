@@ -2,7 +2,6 @@
 *Created by Gloria Ngo
 *
 *IS448 - Markup Languages
-*Deliverable 4 - HTML/CSS
 *Sreedevi Sampath
 *
 *Description: This is the standardizing css file that will make the pie.html
@@ -25,14 +24,21 @@ html, body {
 }
 
 .poi_select {
+	height: 150px;
 }
 
 .poi {
+	height: 100px;
 	overflow-y: scroll;
+	padding: 5px;
 }
 
 .left {
 	margin-left: 0;
+}
+
+.maxHeight {
+	height: 100%;
 }
 
 #map {

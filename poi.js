@@ -2,7 +2,6 @@
 *Created by Gloria Ngo
 *
 *IS448 - Markup Languages
-*Deliverable 5 - PHP/MySql
 *Gloria Ngo
 *
 *Description: It uses Google's Map API to have a map drawn onto the page and to
@@ -19,20 +18,7 @@ var lngPoints = [];
 
 var drawingManager = new google.maps.drawing.DrawingManager();
 
-window.onload = function() {
-	var form = document.getElementById('form');
-	form.addEventListener('submit', function() {
-		//alert("I'm a form listener on submit!");
-		var latSubmit = document.getElementById('latInput');
-		var lngSubmit = document.getElementById('lngInput');
-		latSubmit.value = JSON.stringify(latPoints);
-		lngSubmit.value = JSON.stringify(lngPoints);
-	});
-}
-
 google.maps.event.addDomListener(window, 'load', initMap);
-
-
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
@@ -41,9 +27,8 @@ function initMap() {
 	});
 	
 	var position = new google.maps.LatLng(36.098967, -112.100166);
-	//var position2 = new google.maps.LatLng(36.098767, -112.100166);
 	
-	var string = "<div><p><strong>Name: </strong>Devil\'s Rock <br />" +
+	/*var string = "<div><p><strong>Name: </strong>Devil\'s Rock <br />" +
 		"<strong>Activity: </strong>Rock Climbing <br />" + 
 		"<strong>Description: </strong> Difficulty: 10a</p></div>";
 
@@ -60,7 +45,7 @@ function initMap() {
 			map: map
 		});
 	
-	marker.setMap(map);
+	marker.setMap(map);*/
 
 	drawingManager.setOptions({
 		drawingMode : google.maps.drawing.OverlayType.POLYGON,
@@ -88,7 +73,7 @@ function initMap() {
 	
 	google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
 		var coor = (polygon.getPath().getArray());
-		//window.alert(coor[0] + " LAT=" + coor[0].lat() + " LNG=" + coor[0].lng());
+		//alert(coor[0] + " LAT=" + coor[0].lat() + " LNG=" + coor[0].lng());
 		
 		newOverlay = polygon;
 		//alert(newOverlay);
@@ -110,10 +95,27 @@ function initMap() {
 	google.maps.event.addDomListener(document.getElementById('create-new-button'), 'click', createNewOverlay);
 }
 
+//submitForm function
+function submitForm() {
+	//alert("Submitting form");
+	//check if lat and lng points are empty
+	if(isEmpty(latPoints) || isEmpty(lngPoints)) {
+		alert("Please mark your Point of Interest before submitting.");
+	//if they are filled submit the form
+	} else {
+		var latSubmit = document.getElementById('latInput');
+		var lngSubmit = document.getElementById('lngInput');
+		latSubmit.value = latPoints;
+		lngSubmit.value = lngPoints;
+		
+		//submit the form
+		document.forms["formPoi"].submit();
+	}
+}
 
 //overlayComplete function
 function overlayComplete(coor) {
-	alert(coor);
+	//alert(coor);
 	
 	for(i = 0; i < coor.length; i++) {
 		//alert("I'm in for-loop looping");
@@ -143,4 +145,33 @@ function createNewOverlay() {
 		drawingControl: true
 	});
 	
+}
+
+//populatePoi function
+function populatePoi() {
+	
+}
+
+//updatePoi function
+function updatePoi() {
+	alert("updated! //updatePoi function");
+	/*var xhttp;
+	if (window.XMLHttpRequest) {
+		xhttp = new XMLHttpRequest();
+	} else {
+		// code for IE6, IE5
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			//stuff here
+		}
+	};
+	xhttp.open("GET", /*stuff here/, true);
+	xhttp.send();*/
+}
+
+//isEmpty function
+function isEmpty(value) {
+	return (value == null || value.length === 0);
 }
