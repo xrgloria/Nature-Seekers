@@ -14,49 +14,42 @@ $latitudeTop = mysql_real_escape_string(htmlspecialchars($_GET['latitudeTop']));
 $longitudeLeft = mysql_real_escape_string(htmlspecialchars($_GET['longitudeLeft']));
 $latitudeBottom = mysql_real_escape_string(htmlspecialchars($_GET['latitudeBottom']));
 $longitudeRight = mysql_real_escape_string(htmlspecialchars($_GET['longitudeRight']));
-$sql = "SELECT O.OVERLAY_ID, O.TYPE, P.LATITUDE, P.LONGITUDE
+$sql = "SELECT OVERLAY_ID, TYPE
 		FROM OVERLAYS O
-		JOIN POINTS P
-		ON O.OVERLAY_ID = P.OVERLAY_ID
 		WHERE O.OVERLAY_ID IN (SELECT OVERLAY_ID FROM POINTS WHERE LATITUDE BETWEEN $latitudeBottom AND $latitudeTop 
-			AND LONGITUDE BETWEEN $longitudeLeft AND $longitudeRight);";
+			AND LONGITUDE BETWEEN $longitudeLeft AND $longitudeRight)
+		ORDER BY O.OVERLAY_ID;";
 $result = mysql_query($sql);
 
-$xml = new XMLWriter();
-
-$xml->openURI("php://output");
-$xml->startDocument();
-$xml->setIndent(true);
-
-$xml->startElement('overlays');
+$jsonData = new array();
 $previousOverlayID = -1;
 
 if (mysql_num_rows($result) > 0) {
     while($row = mysql_fetch_array($result)) {
-		if($row['OVERLAY_ID'] != $previousOverlayID){
-			if($previousOverlayID != -1){
-				$xml->endElement();
-			}
-
-			$xml->startElement("overlay");
-			$xml->writeAttribute('OVERLAY_ID', $row['OVERLAY_ID']);
-			$xml->writeAttribute('TYPE', $row['OVERLAY_TYPE']); 	
+		$id = $row['OVERLAY_ID'];
+		$type = $row['TYPE'];
+		$json[$id] = array(
+			'id' => $id,
+			'type' => $type);
+		$activityQuery = "SELECT A.ACTIVITY_NAME FROM ACTIVITIES A JOIN OVERLAY_ACTIVITIES O
+							ON A.ACTIVITY_ID = O.ACTIVITY_ID
+							WHERE O.OVERLAY_ID = $id";
+		$activityResult = mysql_query($activityQuery);
+		$activities = array();
+		while($activityRow = mysql_fetch_array($activtyResult)) {
+			array_push($activites, $activityRow['ACTIVITY_NAME');
 		}
-		$xml->startElement("coordinate");
-		$xml->startElement("latitude");
-		$xml->writeRaw($row['LATITUDE']);
-		$xml->endElement();
-		$xml->startElement("longitude");
-		$xml->writeRaw($row['LONGITUDE']);
-		$xml->endElement();
-		$xml->endElement();
-		$previousOverlayID = $row['OVERLAY_ID'];
+		$json[$id]['activities'] = $activities;
+		$pointQuery = "SELECT LATITUDE, LONGITUDE FROM POINTS WHERE OVERLAY_ID = $id;";
+		$pointResult = mysql_query($pointQuery);
+		$points = array();
+		while($pointRow = mysql_fetch_array($pointResult)) {
+			array_push($points, array('lat' => $pointRow['LATITUDE'], 'lng' => $pointRow['LONGITUDE']));
+		}
+		$json[$id]['points'] = $points;
+			
 	}
 }
 
-$xml->endElement();
-$xml->endElement();
-
-header('Content-type: text/xml');
-$xml->flush();
+echo json_encode($json, JSON_NUMERIC_CHECK);
 ?>
