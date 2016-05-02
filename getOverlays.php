@@ -21,7 +21,7 @@ $sql = "SELECT OVERLAY_ID, TYPE
 		ORDER BY O.OVERLAY_ID;";
 $result = mysql_query($sql);
 
-$jsonData = new array();
+$jsonData = array();
 $previousOverlayID = -1;
 
 if (mysql_num_rows($result) > 0) {
