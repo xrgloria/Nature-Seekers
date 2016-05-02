@@ -3,12 +3,12 @@
 
 <!-- 
 Author: Steven Nguyen
-Date last modified: 3/20/2016
+Date last modified: 5/02/2016
 IS 448
 Professor Sampath
 This document will be used to allow users to retrieve their forgotten username and 
 password. Users must input a valid email address to have the information associated 
-with that email address sent to it.
+with that email address sent to it. AJAX MAY BE USED TO VERIFY AN EMAIL ADDRESS.
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -19,9 +19,11 @@ with that email address sent to it.
 			Account Retrieval - Nature Seekers
 		</title>
 		
-		<!-- CSS styling -->
+		<!-- CSS styling and javascript linking -->
 		<link rel="stylesheet" href="style/lavish-bootstrap.css"/>
 		<link rel="stylesheet" href="style/steven.css"/>
+		<script type="text/javascript" src="forgot.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.3/prototype.js"></script>
 		
 	</head>
 	
@@ -34,30 +36,30 @@ with that email address sent to it.
 					Nature Seekers
 				</span>
 				<ul class="nav navbar-nav">
-					<li><a href="./login.html">Home</a></li>
+					<li><a href="./login.php">Home</a></li>
 				</ul>
 			</div>
 		</div>
 		
 		<!-- First header of the webpage -->
 		<h1 class="centerhead">
-		<b>Forgot your Username/Password?</b>
+		<b>Forgot your Username?</b>
 		</h1>
 		
 		<!-- Details on the webpage's purpose -->
 		<p class="centerText">
-			If you've forgotten your username or password, please input the email address that 
-			is associated with your account below. Afterwards, you will receive an email from 
-			us, including your username and password.
+			If you've forgotten your username, please input the email address that is associated with your account below. Afterwards, you will be notified of your username.
 		</p>
 		
-		<!-- Forgotten information email form (PHP not yet implemented) -->
+		<!-- Forgotten information email form -->
 		<form action="">
 		<p class="centerText">
-			<b>Email address:</b> <input type="text" name="Email" size="25"/>
+			<b>Email address:</b> <input type="text" id="email" name="Email" size="25" onblur="validateEmail(this.value);" />
 			<form action="identify.php">
-				<input type="submit" value="Email Me"/>
+				<input type="submit" value="Get Username" onclick="validateRecovery();" />
 			</form>
+			<!-- msgbox to display AJAX response -->
+			<div id="msgbox" class="centerText"></div>
 		</p>
 		
 		</form>
