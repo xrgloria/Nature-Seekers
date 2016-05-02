@@ -75,8 +75,8 @@ google maps   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLc
                 <div class="panel-heading">
                     <h3>Search</h3>
                 </div>
-                <div class="panel-body">
-                    <p> Please enter either City, State and Zipcode or Latitude and Longitude</p>
+                <div class="panel-body" id="searchBody">
+                    <p id = "userprompt"> Please enter either City, State and Zipcode or Latitude and Longitude</p>
                     <!--<form id="input" name="input" > -->
                         <label for="cityName">City Name</label> <input class=
                         "form-control" id="city" name="city" type="text">
@@ -96,10 +96,12 @@ google maps   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLc
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3>Results</h3><span id="searchResult"></span>
+                    <h3>Results</h3>
                 </div>
-                <div class="panel-body">
+				
+                <div class="panel-body" id="resultBody">
                     <div class="panel-title"></div>
+					<span id="searchResult"></span>
                 </div>
             </div>
         </div>

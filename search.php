@@ -5,8 +5,12 @@
 	//gets the data from the same page and stays there
     // for testing to actually see listed results, just put 3 in latitude and longitude 
 
-		$userLatitude  = $_GET['latitude'];
-		$userLongitude = $_GET['longitude'];
+		$latitudeTop  = $_GET['latitudeTop'];
+		$latitudeBottom= $_GET['latitudeBottom'];
+		$longitudeLeft = $_GET['longitudeLeft'];
+		$longitudeRight = $_GET['longitudeRight'];
+		
+		
     
 
 	//connecting to the database
@@ -17,33 +21,26 @@
 	
 	if (!$er)    exit("Error, User not found.");
 	//sql query
-	$searchResults = mysql_query("SELECT * FROM POINTS");
+	$searchResults = mysql_query("SELECT * FROM POINTS WHERE latitude BETWEEN $latitudeBottom AND $latitudeTop AND longitude BETWEEN $longitudeLeft AND $longitudeRight");
+
                 
     $resultFound = false;      
 
-$latitudeRange = $userLatitude+10;
-$longitudeRange = $userLongitude+10;
+	$resultArray;
 
-$latitudeRangeMinus = $userLatitude-10;
-$longitudeRangeMinus = $userLongitude-10; 
-	
 	//goes through all of the entries in the table 
-	while ($row_array = mysql_fetch_array($searchResults)) {
-		$latitude  = $row_array['latitude'];
-		$longitude = $row_array['longitude'];
-		
-		
-		
-		//looks for results that match
-		if ($latitude == $userLatitude and $longitude == $userLongitude) {
-			echo "A match was found at latitude: ". $latitude ." longitude: ". $longitude."\r\n";
-            $resultFound=true;
-		}
 
+	while ($row_array = mysql_fetch_array($searchResults)) {
+		$latitude  = $row_array["latitude"];
+		$longitude = $row_array["longitude"];
+		
+		
+		$coordinates=$latitude.",".$longitude.",";
+		$resultArray .= $coordinates; 
+		
 	}
-        //if no results were found, then it tells the user that
-        if(!$resultFound)
-            echo "No points were found that matched those coordinates.";
+	echo $resultArray;
+	
    
 
 ?>

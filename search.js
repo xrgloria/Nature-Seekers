@@ -1,27 +1,21 @@
+var map;
+var marker;
+var geocoder = new google.maps.Geocoder();
 
-var map; 
-var myLatlng = new google.maps.LatLng(90.02341,-90.23498);
-var marker; 
-
-function initialize(){
- var myLatlng = new google.maps.LatLng(40.65, -74);
- var myOptions = {
- zoom: 8,
- center: myLatlng,
- mapTypeId: google.maps.MapTypeId.ROADMAP,
-}
-
-map = new google.maps.Map(document.getElementById('map'), myOptions);
-
+function initialize() {
+    var myLatlng = new google.maps.LatLng(40.65, -74);
+    var myOptions = {
+        zoom: 10,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+    }
+    map = new google.maps.Map(document.getElementById('map'), myOptions);
     var zoomLevel = map.getZoom();
-
     marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
         draggable: true
     });
-
-
 };
 
 function moveMarker() {
@@ -29,30 +23,85 @@ function moveMarker() {
     var lng = parseFloat(document.getElementById('longitude').value);
     var newLatLng = new google.maps.LatLng(lat, lng);
     marker.setPosition(newLatLng);
-	map.panTo(newLatLng); 
+    map.panTo(newLatLng);
 }
 
+function moveMarkerZipcode(latitude, longitude) {
+    var lat = latitude;
+    var lng = longitude;
+    var newLatLng = new google.maps.LatLng(lat, lng);
+    marker.setPosition(newLatLng);
+    map.panTo(newLatLng);
+}
 google.maps.event.addDomListener(window, 'load', initialize);
 
-
-
 function callPHP(latitude, longitude) {
-jQuery.noConflict(); 
+    jQuery.noConflict();
+    var bounds = map.getBounds()
+    var northEast = bounds.getNorthEast();
+    var southWest = bounds.getSouthWest();
+    var latitudeTop = northEast.lat();
+    var latitudeBottom = southWest.lat();
+    var longitudeRight = northEast.lng();
+    var longitudeLeft = southWest.lng();
     new Ajax.Request("search.php", {
         method: "get",
         parameters: {
-            latitude: latitude,
-            longitude: longitude
+            latitudeTop: latitudeTop,
+            longitudeLeft: longitudeLeft,
+            latitudeBottom: latitudeBottom,
+            longitudeRight: longitudeRight,
         },
         onSuccess: displayResult
     });
 }
 
 function displayResult(ajax) {
-alert("am I entering here"); 
-    $('searchResult').innerHTML = ajax.responseText;
-    alert(ajax.responseText);
+  
+    var pointsArray = ajax.responseText;
+    var length = pointsArray.length;
+    
+      if(length>2){
+      $('searchResult').innerHTML ="Results were found! The points are displayed on the map.";
+        
+         
+    }
+    else{
+        $('searchResult').innerHTML ="There were no points of interest for this location.";
+        //this fulfills a requirement for changing a CSS color
+        document.getElementById('searchResult').style.color="red";
+    }
+ 
+    var coords = pointsArray.split(",");
+    for (var x = 0; x < length - 1; x++) {
+        var lat = parseFloat(coords[x]);
+        var lng = parseFloat(coords[x + 1]);
+        var myLatlng = new google.maps.LatLng(lat, lng);
+        marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            draggable: true
+        });
+    }
     return true;
+}
+
+function geocodeAddress(geocoder, resultsMap, userLatitude, userLongitude) {
+    var address = $("zip").value;
+    geocoder.geocode({
+        'address': address
+    }, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            var userLatitude = results[0].geometry.location.lat();
+            var userLongitude = results[0].geometry.location.lng();
+            moveMarkerZipcode(userLatitude, userLongitude);
+            callPHP(userLatitude, userLongitude);
+        } else {
+            alert(
+                'Geocode was not successful for the following reason: ' +
+                status);
+        }
+    });
 }
 
 function validate() {
@@ -61,18 +110,23 @@ function validate() {
     var zipcode = $("zip").value;
     var latitude = $("latitude").value;
     var longitude = $("longitude").value;
- 
-   moveMarker(); 
-    //if(validateBlank(city,state,zipcode,latitude,longitude)&& validateAddress(city,state,zipcode) && validateCoordinates(latitude,longitude)){
-    // }
-   callPHP(latitude,longitude);
+    if (validateBlank(city, state, zipcode, latitude, longitude)) {
+        if (latitude.length == 0 && longitude.length == 0) {
+            if (validateAddress(city, state, zipcode)) {
+                geocodeAddress(geocoder, map);
+            }
+        } else {
+            if (validateCoordinates(longitude, latitude)) {
+                moveMarker();
+                callPHP(latitude, longitude);
+            }
+        }
+    }
 }
 
 function validateBlank(city, state, zipcode, latitude, longitude) {
     var message = new Array();
     var isFilled = true;
-    
-    
     if (city.length == 0) {
         message.push("City")
         isFilled = false;
@@ -93,21 +147,24 @@ function validateBlank(city, state, zipcode, latitude, longitude) {
         message.push("Longitude")
         isFilled = false;
     }
-    
-    if(zipcode.length==0 && latitude.length !=0 && longitude.length!=0){
-        isFilled = true; 
+    if (zipcode.length == 0 && latitude.length != 0 && longitude.length !=
+        0) {
+        isFilled = true;
     }
-    
-    if(zipcode.length!=0 && latitude.length==0 && longitude.length==0){
-        isFilled = true; 
+    if (zipcode.length != 0 && latitude.length == 0 && longitude.length ==
+        0) {
+        isFilled = true;
     }
     if (isFilled == false) {
+         document.getElementById('userprompt').style.color="red";
+         document.getElementById('userprompt').style.fontSize = "xx-large";
         var fullMessage = "";
         for (i = 0; i < message.length; i++) {
             fullMessage += "," + message[i]
         }
-        alert("Please fill in all the necessary fields. The blank fields are".concat(
-            fullMessage));
+        alert(
+            "Please fill in all the necessary fields. The blank fields are"
+            .concat(fullMessage));
         return false;
     } else {
         return true;
@@ -174,4 +231,5 @@ function validateCoordinates(latitude, longitude) {
         return false;
     }
 }
+
 
