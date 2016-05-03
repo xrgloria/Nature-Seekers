@@ -31,6 +31,7 @@ function redrawMap(ajax){
 }
 
 function addOverlay(overlay){
+	alert('adding overlay');
 	var newOverlay;
 
 	if(overlay['OVERLAY_TYPE'] == 2){
