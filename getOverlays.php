@@ -22,6 +22,8 @@ $result = mysql_query($sql) or die(mysql_error());
 
 
 echo '{';
+$numOfRows = mysql_num_rows($result);
+$counter = 0;
 if (mysql_num_rows($result) > 0) {
     while($row = mysql_fetch_array($result)) {
 		$id = $row['OVERLAY_ID'];
@@ -33,10 +35,20 @@ if (mysql_num_rows($result) > 0) {
 		
 		$pointQuery = "SELECT LATITUDE, LONGITUDE FROM POINTS WHERE OVERLAY_ID = $id;";
 		$pointResult = mysql_query($pointQuery) or die(mysql_error());
+		$numOfRowsPoint = mysql_num_rows($pointResult);
+		$counterPoint = 0;
 		while($pointRow = mysql_fetch_array($pointResult)) {
-			echo '{"lat":'. $pointRow['LATITUDE'] . ',"lng":' . $pointRow['LONGITUDE'] . '},' ;
+			echo '{"lat":'. $pointRow['LATITUDE'] . ',"lng":' . $pointRow['LONGITUDE'] . '}' ;
+			if (++$counter == $numResults) {
+			} else {
+			echo ',';
+			}
 		}
-		echo ']},' ;
+		echo ']}' ;
+		if (++$counter == $numResults) {
+		} else {
+		echo ',';
+		}
 	}
 }
 echo '}';
