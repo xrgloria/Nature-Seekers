@@ -20,7 +20,7 @@ function updateMap(){
 			longitudeLeft: boundaries.east,
 			longitudeRight: boundaries.west		
 		},
-		onSuccess: redrawMap
+		onSuccess: redrawMap,
 		onFailure: whatTheHell
 	});
 }
