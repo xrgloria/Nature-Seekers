@@ -43,6 +43,7 @@ function addOverlay(overlay){
 	var newOverlay;
 
 	if(overlay['OVERLAY_TYPE'] == 2){
+		alert("adding polygon");
 		newOverlay = new google.maps.Polygon({
 		paths: overlay['POINTS'],
 		strokeColor: white,
@@ -62,6 +63,7 @@ function addOverlay(overlay){
 			strokeWeight: 4
 		});
 	} else{
+		alert("adding point");
 		newOverlay = new google.maps.Marker({
 		map: map,
 		draggable: true,
