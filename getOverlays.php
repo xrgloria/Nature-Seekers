@@ -52,6 +52,6 @@ if (mysql_num_rows($result) > 0) {
 			
 	}
 }
-
-echo json_encode($json, JSON_NUMERIC_CHECK);
+$json = new Services_JSON();
+return $json->encode($data);
 ?>
