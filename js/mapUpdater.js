@@ -11,7 +11,7 @@ function initMap() {
 
 
 function updateMap(){
-	var boundaries = map.getBounds();
+	var bounds = map.getBounds();
 	var NE = bounds.getNorthEast();
 	var SW = bounds.getSouthWest();
 	var north = NE.lat();
