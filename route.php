@@ -24,6 +24,9 @@ if(!isset($_SESSION['user'])){
 
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.3/prototype.js"></script>
+
 </head>
 <body>
 <div class="navbar navbar-inverse" style="border-radius:0pt;">
