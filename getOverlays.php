@@ -25,16 +25,16 @@ $result = mysql_query($sql);
 echo '{';
 if (mysql_num_rows($result) > 0) {
     while($row = mysql_fetch_array($result)) {
-		echo '"OVERLAY" : {' . $row['OVERLAY_ID']) . ",";
-		echo '"OVERLAY_TYPE" :' . $row['OVERLAY_TYPE']) . ",";
-		echo '"ACTIVITY_NAME" :' . $row['ACTIVITY_NAME']) . ",";
-		echo '"OVERLAY_NAME" :' . $row['OVERLAY_NAME']) . ",";
+		echo '"OVERLAY" : {' . $row['OVERLAY_ID'] . ",";
+		echo '"OVERLAY_TYPE" :' . $row['OVERLAY_TYPE'] . ",";
+		echo '"ACTIVITY_NAME" :' . $row['ACTIVITY_NAME'] . ",";
+		echo '"OVERLAY_NAME" :' . $row['OVERLAY_NAME'] . ",";
 		echo '"POINTS" :[';
 		
 		$pointQuery = "SELECT LATITUDE, LONGITUDE FROM POINTS WHERE OVERLAY_ID = $id;";
 		$pointResult = mysql_query($pointQuery);
 		while($pointRow = mysql_fetch_array($pointResult)) {
-			echo '{"lat":'. $pointRow['LATITUDE']) . ',"lng":' . $pointRow['LONGITUDE']) . '},' ;
+			echo '{"lat":'. $pointRow['LATITUDE'] . ',"lng":' . $pointRow['LONGITUDE'] . '},' ;
 		}
 		echo ']},' 
 }
