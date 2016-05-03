@@ -34,7 +34,7 @@ function updateMap(){
 
 function redrawMap(ajax){
 	overlays = JSON.parse(ajax.responseText);
-	overlays.each(function (overlay){
+	overlays.forEach(function (overlay){
 	alert('adding overlay');
 	var newOverlay;
 
