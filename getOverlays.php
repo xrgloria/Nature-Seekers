@@ -27,8 +27,8 @@ if (mysql_num_rows($result) > 0) {
 		$id = $row['OVERLAY_ID'];
 		echo '"' . $id . '": {';
 		echo '"OVERLAY_TYPE" :' . $row['TYPE'] . ",";
-		echo '"ACTIVITY_NAME" :' . $row['ACTIVITY_NAME'] . ",";
-		echo '"OVERLAY_NAME" :' . $row['OVERLAY_NAME'] . ",";
+		echo '"ACTIVITY_NAME" : "' . $row['ACTIVITY_NAME'] . '",';
+		echo '"OVERLAY_NAME" : "' . $row['OVERLAY_NAME'] . '",';
 		echo '"POINTS" :[';
 		
 		$pointQuery = "SELECT LATITUDE, LONGITUDE FROM POINTS WHERE OVERLAY_ID = $id;";
