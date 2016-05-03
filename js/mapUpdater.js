@@ -1,6 +1,6 @@
  var map;
  var overlays;
- jqeury.noConflict();
+ jquery.noConflict();
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 	  center: {lat: 38.940965, lng: -77.127542},
