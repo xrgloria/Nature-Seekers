@@ -1,3 +1,35 @@
+
+function checkUsername(inputString){
+	new Ajax.Request(
+		"./checkUsername.php",
+		{
+			method: "get",
+			parameters: {user_name:inputString},
+			onSuccess: displayResult,
+			onFailure: weFailed
+		}
+	)
+}
+
+function displayResult(ajax){
+	var test = ajax.responseText;
+	$("msgbox").innerHTML = test;
+	if(test == "Username in database."){
+		$("msgbox").style.backgroundColor="red";
+		$("msgbox").style.color="white";
+		$("msgbox").style.fontWeight="bold";
+		$("msgbox").focus();
+	}
+	else{
+		$("msgbox").style.backgroundColor="green";
+		$("msgbox").style.color="white";
+		$("msgbox").style.fontWeight="bold";
+		$("msgbox").focus();
+	}
+}
+function weFailed(){
+	alert("WHY!");
+}
 function validatePage() {
 	//First Name
 	var first_name = document.getElementById("first_name").value;

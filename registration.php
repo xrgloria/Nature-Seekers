@@ -64,6 +64,7 @@ Last Date of Modification: 4/3/16 -->
 	$result = mysql_query($constructed_query);
 	#echo $result;
 	
+
 	//header('Location: ./search.php');
 ?>
 </body>
