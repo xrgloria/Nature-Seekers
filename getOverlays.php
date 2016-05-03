@@ -19,7 +19,7 @@ $sql = "SELECT O.OVERLAY_ID, O.TYPE, O.ACTIVITY_NAME, O.OVERLAY_NAME
 		WHERE O.OVERLAY_ID IN (SELECT OVERLAY_ID FROM POINTS WHERE LATITUDE BETWEEN $latitudeBottom AND $latitudeTop 
 			AND LONGITUDE BETWEEN $longitudeLeft AND $longitudeRight)
 		ORDER BY O.OVERLAY_ID;";
-$result = mysql_query($sql) or die(mysql_error());;
+$result = mysql_query($sql) or die(mysql_error());
 
 
 echo '{';
@@ -32,7 +32,7 @@ if (mysql_num_rows($result) > 0) {
 		echo '"POINTS" :[';
 		
 		$pointQuery = "SELECT LATITUDE, LONGITUDE FROM POINTS WHERE OVERLAY_ID = $id;";
-		$pointResult = mysql_query($pointQuery);
+		$pointResult = mysql_query($pointQuery) or die(mysql_error());
 		while($pointRow = mysql_fetch_array($pointResult)) {
 			echo '{"lat":'. $pointRow['LATITUDE'] . ',"lng":' . $pointRow['LONGITUDE'] . '},' ;
 		}
