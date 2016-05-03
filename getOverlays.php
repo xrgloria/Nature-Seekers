@@ -37,6 +37,7 @@ if (mysql_num_rows($result) > 0) {
 			echo '{"lat":'. $pointRow['LATITUDE'] . ',"lng":' . $pointRow['LONGITUDE'] . '},' ;
 		}
 		echo ']},' ;
+	}
 }
 echo '}';
 ?>
