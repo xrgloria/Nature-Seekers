@@ -63,6 +63,7 @@ function addOverlay(overlay){
 			strokeWeight: 4
 		});
 	} else{
+		alert(overlay['POINTS'][0]);
 		alert("adding point");
 		newOverlay = new google.maps.Marker({
 		map: map,
