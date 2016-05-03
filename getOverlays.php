@@ -32,8 +32,8 @@ if (mysql_num_rows($result) > 0) {
 		$description = $row['DESCRIPTION'];
 		$json[$id] = array(
 			'id' => $id,
-			'type' => $type
-			'activity' => $activity
+			'type' => $type,
+			'activity' => $activity,
 			'description' => $description);
 		$activityResult = mysql_query($activityQuery);
 		$activities = array();
