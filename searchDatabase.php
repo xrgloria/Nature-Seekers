@@ -17,10 +17,10 @@ appends the results to a string, and then returns that string.
 		
 		
 	//connecting to the database
-	$db = mysql_connect("studentdb-maria.gl.umbc.edu", "mia5", "carrot");
+	$db = mysql_connect("studentdb-maria.gl.umbc.edu", "xr43817", "xr43817");
 	
 	if (!$db)    exit("Error! Database not found.");
-	$er = mysql_select_db("mia5");
+	$er = mysql_select_db("xr43817");
 	
 	if (!$er)    exit("Error, User not found.");
 	//sql query

@@ -213,6 +213,7 @@ function validateBlank(city, state, zipcode, latitude, longitude) {
         for (i = 0; i < message.length; i++) {
             fullMessage += "," + message[i]
 			//changes the input text border to make sure the user understands what to do
+			//fulfills a dynamic css requirement
 			if(message[i]!=null){
 				document.getElementById(message[i]).style.borderColor="red";
 			}

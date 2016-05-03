@@ -1,9 +1,9 @@
-<!--ini_set('display_errors', 1);
+<?php ini_set('display_errors', 1);
 session_start();
-if(!isset($_SESSION['user'])){
+if(!isset($_SESSION['LoggedIn'])){
 	header('Location: ./login.php');
 	}
- -->
+?>
 <!DOCTYPE html>
 <!-- 
 Author: Mia Frederick
