@@ -1,6 +1,6 @@
 <?php
 
-$db = mysql_connect("studentdb-maria","xr43817","xr43817");
+$db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
 
 if(!$db)
 	exit("Error - could not connect to MySQL");
