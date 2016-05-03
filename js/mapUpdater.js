@@ -13,7 +13,7 @@ function initMap() {
 function updateMap(){
 	var boundaries = map.getBounds();
 	new Ajax.Request("./getOverlays.php",{
-		method: get,
+		method: 'get',
 		parameters: {
 			latitudeTop: boundaries.north,
 			latitudeBottom: boundaries.south,
