@@ -25,7 +25,7 @@ $result = mysql_query($sql) or die(mysql_error());
 echo '{';
 if (mysql_num_rows($result) > 0) {
     while($row = mysql_fetch_array($result)) {
-		$id = $row['OVERLAY_ID']
+		$id = $row['OVERLAY_ID'];
 		echo '"' . $id . ": {";
 		echo '"OVERLAY_TYPE" :' . $row['OVERLAY_TYPE'] . ",";
 		echo '"ACTIVITY_NAME" :' . $row['ACTIVITY_NAME'] . ",";
