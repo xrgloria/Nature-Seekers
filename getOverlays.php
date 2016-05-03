@@ -6,7 +6,7 @@ if(!$db)
 	exit("Error - could not connect to MySQL");
 
 #select database luke5
-$er = mysql_select_db("natureSeekers");
+$er = mysql_select_db("xr43817");
 if(!$er)
 	exit("Error - could not select database");
 //$userID = $_SESSION['user'];
