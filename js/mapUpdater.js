@@ -42,7 +42,7 @@ function addOverlay(overlay){
 	alert('adding overlay');
 	var newOverlay;
 
-	if(overlay['OVERLAY_TYPE'] == 2){
+	if(overlay['OVERLAY_TYPE'] == "2"){
 		alert("adding polygon");
 		newOverlay = new google.maps.Polygon({
 		paths: overlay['POINTS'],
@@ -53,7 +53,7 @@ function addOverlay(overlay){
 		fillOpacity: 0.7
 		});
 		newOverlay.setMap(map);
-	} else if(overlay['OVERLAY_TYPE'] == 1){
+	} else if(overlay['OVERLAY_TYPE'] == "1"){
 		alert("adding line");
 		newOverlay = new google.maps.Polyline({
 			path: overlay['POINTS'],
@@ -67,7 +67,6 @@ function addOverlay(overlay){
 		alert("adding point");
 		newOverlay = new google.maps.Marker({
 		map: map,
-		draggable: true,
 		position: overlay['POINTS'][0]
 	});
 	}
