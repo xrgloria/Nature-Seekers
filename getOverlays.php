@@ -19,7 +19,7 @@ $sql = "SELECT O.OVERLAY_ID, O.TYPE, O.OVERLAY_ACTIVITY, O.OVERLAY_NAME
 		WHERE O.OVERLAY_ID IN (SELECT OVERLAY_ID FROM POINTS WHERE LATITUDE BETWEEN $latitudeBottom AND $latitudeTop 
 			AND LONGITUDE BETWEEN $longitudeLeft AND $longitudeRight)
 		ORDER BY O.OVERLAY_ID;";
-$result = mysql_query($sql);
+$result = mysql_query($sql) or die(mysql_error());;
 
 
 echo '{';
