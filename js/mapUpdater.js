@@ -21,6 +21,7 @@ function updateMap(){
 			longitudeRight: boundaries.west		
 		},
 		onSuccess: redrawMap
+		onFailure: whatTheHell
 	});
 }
 
@@ -31,6 +32,9 @@ function redrawMap(ajax){
 	overlays.each(addOverlay)
 }
 
+function whatTheHell(){
+	alert("shit went south");
+}
 function addOverlay(overlay){
 	alert('adding overlay');
 	var newOverlay;
