@@ -33,7 +33,6 @@ if (mysql_num_rows($result) > 0) {
 		echo '"POINTS" :[';
 		
 		$pointQuery = "SELECT LATITUDE, LONGITUDE FROM POINTS WHERE OVERLAY_ID = $id;";
-		echo $pointQuery .  ' <br/>' ;
 		$pointResult = mysql_query($pointQuery) or die(mysql_error());
 		while($pointRow = mysql_fetch_array($pointResult)) {
 			echo '{"lat":'. $pointRow['LATITUDE'] . ',"lng":' . $pointRow['LONGITUDE'] . '},' ;

@@ -35,7 +35,7 @@ function addOverlay(overlay){
 
 	if(overlay.type == 2){
 		newOverlay = new google.maps.Polygon({
-		paths: overlay.points,
+		paths: overlay['points'],
 		strokeColor: white,
 		strokeOpacity: 0.8,
 		strokeWeight: 2,
@@ -45,7 +45,7 @@ function addOverlay(overlay){
 		newOverlay.setMap(map);
 	} else if(overlay.type == 1){
 		newOverlay = new google.maps.Polyline({
-			path: overlay.points,
+			path: overlay['points'],
 			geodesic: true,
 			strokeColor: '#FF0000',
 			strokeOpacity: 1.0,
@@ -55,13 +55,13 @@ function addOverlay(overlay){
 		newOverlay = new google.maps.Marker({
 		map: map,
 		draggable: true,
-		position: overlay.points[0];
+		position: overlay['points'][0];
 	});
 	}
 	var infowindow = new google.maps.InfoWindow({
-		content: "<b>Description</b> : " + overlay.description + "<br /><b>Activity</b> : " + overlay.activity});
+		content: "<b>Description</b> : " + overlay['OVERLAY_NAME'] + "<br /><b>Activity</b> : " + overlay['ACTIVITY_NAME']});
 		newOverlay.addListener('mouseover', function(e) {
-			infowindow.setPosition(e.latLng);
+			infowindow.setPosition(overlay['points'][0]);
 			infowindow.open(map);
 		});
 		newOverlay.addListener('mouseout', function() {
