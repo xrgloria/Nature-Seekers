@@ -27,8 +27,7 @@ function updateMap(){
 			longitudeLeft: west,
 			longitudeRight: east		
 		},
-		onSuccess: redrawMap,
-		onFailure: whatTheHell
+		onSuccess: redrawMap
 	});
 }
 
