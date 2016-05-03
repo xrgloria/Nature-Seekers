@@ -15,10 +15,9 @@ $longitudeLeft = mysql_real_escape_string(htmlspecialchars($_GET['longitudeLeft'
 $latitudeBottom = mysql_real_escape_string(htmlspecialchars($_GET['latitudeBottom']));
 $longitudeRight = mysql_real_escape_string(htmlspecialchars($_GET['longitudeRight']));
 $sql = "SELECT O.OVERLAY_ID, O.TYPE, O.ACTIVITY_NAME, O.OVERLAY_NAME
-		FROM OVERLAYS O".
+		FROM OVERLAYS O ORDER BY O.OVERLAY_ID;";
 		/*WHERE O.OVERLAY_ID IN (SELECT OVERLAY_ID FROM POINTS WHERE LATITUDE BETWEEN $latitudeBottom AND $latitudeTop 
 			AND LONGITUDE BETWEEN $longitudeLeft AND $longitudeRight)*/
-		"ORDER BY O.OVERLAY_ID;";
 $result = mysql_query($sql) or die(mysql_error());
 
 
