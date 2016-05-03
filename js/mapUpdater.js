@@ -34,8 +34,9 @@ function updateMap(){
 
 function redrawMap(ajax){
 	overlays = JSON.parse(ajax.responseText);
-	for (overlay in overlays)
-	{
+	overlays.forEach(addOverlay)
+}
+function addOverlay(overlay){
 	alert('adding overlay');
 	var newOverlay;
 
@@ -73,5 +74,4 @@ function redrawMap(ajax){
 		newOverlay.addListener('mouseout', function() {
 			infowindow.close();
 	});
-	}
 }
