@@ -58,7 +58,7 @@ function addOverlay(overlay){
 		newOverlay = new google.maps.Polyline({
 			path: overlay['POINTS'],
 			geodesic: true,
-			strokeColor: '#FF0000',
+			strokeColor: red,
 			strokeOpacity: 1.0,
 			strokeWeight: 4
 		});
