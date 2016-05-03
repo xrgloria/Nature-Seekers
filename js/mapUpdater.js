@@ -31,7 +31,7 @@ function redrawMap(ajax){
 }
 
 function addOverlay(overlay){
-	var newOverlay = new google.maps.Polygon({
+	var newOverlay;
 
 	if(overlay['OVERLAY_TYPE'] == 2){
 		newOverlay = new google.maps.Polygon({
