@@ -34,21 +34,14 @@ function updateMap(){
 
 
 function redrawMap(ajax){
-	alert(ajax.responseText);
 	overlays = JSON.parse(ajax.responseText);
-	overlays.each(addOverlay)
-}
-
-function whatTheHell(){
-	alert("shit went south");
-}
-function addOverlay(overlay){
+	overlays.each(function (overlay){
 	alert('adding overlay');
 	var newOverlay;
 
 	if(overlay['OVERLAY_TYPE'] == 2){
 		newOverlay = new google.maps.Polygon({
-		paths: overlay['points'],
+		paths: overlay['POINTS'],
 		strokeColor: white,
 		strokeOpacity: 0.8,
 		strokeWeight: 2,
@@ -58,7 +51,7 @@ function addOverlay(overlay){
 		newOverlay.setMap(map);
 	} else if(overlay['OVERLAY_TYPE'] == 1){
 		newOverlay = new google.maps.Polyline({
-			path: overlay['points'],
+			path: overlay['POINTS'],
 			geodesic: true,
 			strokeColor: '#FF0000',
 			strokeOpacity: 1.0,
@@ -68,7 +61,7 @@ function addOverlay(overlay){
 		newOverlay = new google.maps.Marker({
 		map: map,
 		draggable: true,
-		position: overlay['points'][0]
+		position: overlay['POINTS'][0]
 	});
 	}
 	var infowindow = new google.maps.InfoWindow({
@@ -80,4 +73,4 @@ function addOverlay(overlay){
 		newOverlay.addListener('mouseout', function() {
 			infowindow.close();
 	});
-}
+});}
