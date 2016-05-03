@@ -33,7 +33,7 @@ function redrawMap(ajax){
 function addOverlay(overlay){
 	var newOverlay = new google.maps.Polygon({
 
-	if(overlay.type == 2){
+	if(overlay['OVERLAY_TYPE'] == 2){
 		newOverlay = new google.maps.Polygon({
 		paths: overlay['points'],
 		strokeColor: white,
@@ -43,7 +43,7 @@ function addOverlay(overlay){
 		fillOpacity: 0.7
 		});
 		newOverlay.setMap(map);
-	} else if(overlay.type == 1){
+	} else if(overlay['OVERLAY_TYPE'] == 1){
 		newOverlay = new google.maps.Polyline({
 			path: overlay['points'],
 			geodesic: true,
@@ -51,7 +51,7 @@ function addOverlay(overlay){
 			strokeOpacity: 1.0,
 			strokeWeight: 4
 		});
-	} else if(overlay.type == 0){
+	} else if(overlay['OVERLAY_TYPE'] == 0){
 		newOverlay = new google.maps.Marker({
 		map: map,
 		draggable: true,
