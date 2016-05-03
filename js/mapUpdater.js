@@ -55,7 +55,7 @@ function addOverlay(overlay){
 		newOverlay = new google.maps.Marker({
 		map: map,
 		draggable: true,
-		position: overlay['points'][0];
+		position: overlay['points'][0]
 	});
 	}
 	var infowindow = new google.maps.InfoWindow({
