@@ -51,6 +51,7 @@ function addOverlay(overlay){
 		});
 		newOverlay.setMap(map);
 	} else if(overlay['OVERLAY_TYPE'] == 1){
+		alert("adding line");
 		newOverlay = new google.maps.Polyline({
 			path: overlay['POINTS'],
 			geodesic: true,
