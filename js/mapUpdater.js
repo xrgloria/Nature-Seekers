@@ -34,7 +34,9 @@ function updateMap(){
 
 function redrawMap(ajax){
 	overlays = JSON.parse(ajax.responseText);
-	overlays.forEach(addOverlay);
+	for (i in overlays){
+		addOverlay(i);
+	}
 }
 function addOverlay(overlay){
 	alert('adding overlay');
@@ -59,7 +61,7 @@ function addOverlay(overlay){
 			strokeOpacity: 1.0,
 			strokeWeight: 4
 		});
-	} else if(overlay['OVERLAY_TYPE'] == 0){
+	} else{
 		newOverlay = new google.maps.Marker({
 		map: map,
 		draggable: true,
@@ -68,7 +70,7 @@ function addOverlay(overlay){
 	}
 	var infowindow = new google.maps.InfoWindow({
 		content: "<b>Description</b> : " + overlay['OVERLAY_NAME'] + "<br /><b>Activity</b> : " + overlay['ACTIVITY_NAME']});
-		newOverlay.addListener('mouseover', function(e) {
+	newOverlay.addListener('mouseover', function(e) {
 			infowindow.setPosition(overlay['points'][0]);
 			infowindow.open(map);
 		});
