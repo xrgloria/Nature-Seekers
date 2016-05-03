@@ -36,7 +36,7 @@ if (mysql_num_rows($result) > 0) {
 		while($pointRow = mysql_fetch_array($pointResult)) {
 			echo '{"lat":'. $pointRow['LATITUDE'] . ',"lng":' . $pointRow['LONGITUDE'] . '},' ;
 		}
-		echo ']},' 
+		echo ']},' ;
 }
 echo '}';
 ?>
