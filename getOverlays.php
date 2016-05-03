@@ -21,37 +21,22 @@ $sql = "SELECT O.OVERLAY_ID, O.TYPE, O.OVERLAY_ACTIVITY, O.OVERLAY_NAME
 		ORDER BY O.OVERLAY_ID;";
 $result = mysql_query($sql);
 
-$xml = new XMLWriter();
 
-$xml->openURI("php://output");
-$xml->startDocument();
-$xml->setIndent(true);
-
-$xml->startElement('OVERLAYS');
-
+echo '{';
 if (mysql_num_rows($result) > 0) {
     while($row = mysql_fetch_array($result)) {
-		$xml->startElement("OVERLAY");
-		$xml->writeAttribute('OVERLAY_ID', $row['OVERLAY_ID']);
-		$xml->writeAttribute('OVERLAY_TYPE', $row['OVERLAY_TYPE']);
-		$xml->writeAttribute('ACTIVITY_NAME', $row['ACTIVITY_NAME']);
-		$xml->writeAttribute('OVERLAY_NAME', $row['OVERLAY_NAME']);
+		echo '"OVERLAY" : {' . $row['OVERLAY_ID']) . ",";
+		echo '"OVERLAY_TYPE" :' . $row['OVERLAY_TYPE']) . ",";
+		echo '"ACTIVITY_NAME" :' . $row['ACTIVITY_NAME']) . ",";
+		echo '"OVERLAY_NAME" :' . $row['OVERLAY_NAME']) . ",";
+		echo '"POINTS" :[';
 		
 		$pointQuery = "SELECT LATITUDE, LONGITUDE FROM POINTS WHERE OVERLAY_ID = $id;";
 		$pointResult = mysql_query($pointQuery);
 		while($pointRow = mysql_fetch_array($pointResult)) {
-			$xml->startElement("COORDINATES");
-			$xml->startElement("LATITUDE");
-			$xml->writeRaw($pointRow['LATITUDE']);
-			$xml->endElement();
-			$xml->startElement("LONGITUDE");
-			$xml->writeRaw($pointRow['LONGITUDE']);
-			$xml->endElement();
-			$xml->endElement();
+			echo '{"lat":'. $pointRow['LATITUDE']) . ',"lng":' . $pointRow['LONGITUDE']) . '},' ;
 		}
-	}
+		echo ']},' 
 }
-$xml->endElement();
-header('Content-type: text/xml');
-$xml->flush();
+echo '}';
 ?>
