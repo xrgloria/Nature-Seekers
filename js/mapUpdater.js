@@ -12,17 +12,19 @@ function initMap() {
 
 function updateMap(){
 	var boundaries = map.getBounds();
-	alert(boundaries[0][0]);
-	alert(boundaries.south);
-	alert(boundaries.east);
-	alert(boundaries.west);
+	var NE = bounds.getNorthEast();
+	var SW = bounds.getSouthWest();
+	var north = NE.lat();
+	var east = NE.lng();
+	var south = SW.lat();
+	var west = SW.lat();
 	new Ajax.Request("./getOverlays.php",{
 		method: 'get',
 		parameters: {
-			latitudeTop: boundaries.north,
-			latitudeBottom: boundaries.south,
-			longitudeLeft: boundaries.east,
-			longitudeRight: boundaries.west		
+			latitudeTop: north,
+			latitudeBottom: south,
+			longitudeLeft: west,
+			longitudeRight: east		
 		},
 		onSuccess: redrawMap,
 		onFailure: whatTheHell
