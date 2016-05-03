@@ -12,6 +12,10 @@ function initMap() {
 
 function updateMap(){
 	var boundaries = map.getBounds();
+	alert(boundaries.north);
+	alert(boundaries.south);
+	alert(boundaries.east);
+	alert(boundaries.west);
 	new Ajax.Request("./getOverlays.php",{
 		method: 'get',
 		parameters: {
