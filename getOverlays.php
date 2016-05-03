@@ -39,13 +39,13 @@ if (mysql_num_rows($result) > 0) {
 		$counterPoint = 0;
 		while($pointRow = mysql_fetch_array($pointResult)) {
 			echo '{"lat":'. $pointRow['LATITUDE'] . ',"lng":' . $pointRow['LONGITUDE'] . '}' ;
-			if (++$counterPoint == $numResults) {
+			if (++$counterPoint == $numOfRowsPoint) {
 			} else {
 			echo ',';
 			}
 		}
 		echo ']}' ;
-		if (++$counter == $numResults) {
+		if (++$counter == $numOfRows) {
 		} else {
 		echo ',';
 		}
