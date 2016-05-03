@@ -12,7 +12,7 @@ function initMap() {
 
 function updateMap(){
 	var boundaries = map.getBounds();
-	alert(boundaries.north);
+	alert(boundaries.[0][0]);
 	alert(boundaries.south);
 	alert(boundaries.east);
 	alert(boundaries.west);
