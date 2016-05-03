@@ -18,6 +18,10 @@ function updateMap(){
 	var east = NE.lng();
 	var south = SW.lat();
 	var west = SW.lat();
+	alert(north);
+	alert(east);
+	alert(south);
+	alert(west);
 	new Ajax.Request("./getOverlays.php",{
 		method: 'get',
 		parameters: {
