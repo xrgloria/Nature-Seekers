@@ -106,7 +106,7 @@ if(!isset($_SESSION['user'])){
 	</div>
 </div>
 
-<script src="./js/viewMap.js"></script>
+<script src="./js/mapUpdater.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABvCBMSTZPK8Wllny5VJVD0cujfAaWZYk&callback=initMap&libraries=geometry" async defer></script>
 </body>
 </html>
