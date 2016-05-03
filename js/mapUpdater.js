@@ -1,4 +1,5 @@
  var map;
+ var overlays;
  jqeury.noConflict();
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
@@ -34,7 +35,7 @@ function updateMap(){
 
 function redrawMap(ajax){
 	alert(ajax.responseText);
-	var overlays = JSON.parse(ajax.responseText);
+	overlays = JSON.parse(ajax.responseText);
 	overlays.each(addOverlay)
 }
 
