@@ -113,7 +113,7 @@ $user = $_SESSION['user_id'];
 						while($row_array = mysql_fetch_array($result)){
 							print("<p>
 								<strong>Name: </strong>$row_array[overlay_name]<br />
-								<strong>Activity: </strong>--blank for now--<br />
+								<strong>Activity: </strong>$row_array[activity_name]<br />
 								<strong>Description: </strong>$row_array[description]
 								<span>
 									<button type=\"button\" class=\"btn btn-primary btn-xs pull-right\">Remove</button>
@@ -181,6 +181,7 @@ $user = $_SESSION['user_id'];
 							</div>
 							<input type="hidden" id="latInput" name="lat">
 							<input type="hidden" id="lngInput" name="lng">
+							<input type="hidden" id="typeInput" name="type">
 							<br />
 							<button type="button" onclick="submitForm();" class="btn btn-primary">Create</button>
 							<button type="reset" class="btn btn-primary">Discard</button>

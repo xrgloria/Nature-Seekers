@@ -63,6 +63,8 @@ $user = $_SESSION['user_id'];
 			$latArray = explode(',', $lat);
 			$lngArray = explode(',', $lng);
 			
+			$type = $_POST['type'];
+			
 			if($privacy === "private") {
 				$private = true;
 			} else {
@@ -70,8 +72,8 @@ $user = $_SESSION['user_id'];
 			}
 
 			#construct a query insert overlay information
-			$constructed_query = "INSERT into OVERLAYS (type, overlay_name, description, user_id, private)
-				values (1, '$name', '$description', '$user', '$private')";
+			$constructed_query = "INSERT into OVERLAYS (type, overlay_name, activity_name, description, user_id, private)
+				values ('$type', '$name', '$activity', '$description', '$user', '$private')";
 								  
 			#Execute query
 			$result = mysql_query($constructed_query);

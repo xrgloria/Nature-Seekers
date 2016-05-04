@@ -11,7 +11,7 @@
 */
 
 var map;
-var marker;
+var type;
 var newOverlay;
 var latPoints = [];
 var lngPoints = [];
@@ -48,13 +48,14 @@ function initMap() {
 	marker.setMap(map);*/
 
 	drawingManager.setOptions({
-		drawingMode : google.maps.drawing.OverlayType.POLYGON,
+		drawingMode : google.maps.drawing.OverlayType.MARKER,
 		drawingControl : true,
 		drawingControlOptions : {
 			position : google.maps.ControlPosition.TOP_CENTER,
 			drawingModes : [ 
-				google.maps.drawing.OverlayType.POLYGON,
-				google.maps.drawing.OverlayType.POLYLINE,
+				google.maps.drawing.OverlayType.MARKER,
+				//google.maps.drawing.OverlayType.POLYGON,
+				//google.maps.drawing.OverlayType.POLYLINE
 				//google.maps.drawing.OverlayType.RECTANGLE 
 			]
 		},
@@ -72,19 +73,35 @@ function initMap() {
 	drawingManager.setMap(map);
 	
 	google.maps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
-		var coor = (polygon.getPath().getArray());
+		var coor = polygon.getPath().getArray();
 		//alert(coor[0] + " LAT=" + coor[0].lat() + " LNG=" + coor[0].lng());
 		
 		newOverlay = polygon;
 		//alert(newOverlay);
-		
+		type = 2;
 		overlayComplete(coor);
 	});
 	
-	google.maps.event.addListener(drawingManager, 'polylinecomplete', function(polyline) {
-		var coor = (polyline.getPath().getArray());
-		//window.alert(coordinates);	
+	google.maps.event.addListener(drawingManager, 'markercomplete', function(marker) {
+		newOverlay = marker;
+		//alert(newOverlay);
+		type = 0;
+		latPoints.push(marker.getPosition().lat());
+		lngPoints.push(marker.getPosition().lng());
 		
+		//alert("lat=" + latPoints + " | lng=" + lngPoints);
+		
+		drawingManager.setOptions({
+			drawingControl: false
+		});
+		drawingManager.setDrawingMode(null);
+		//alert(latPoints + " " + lngPoints);
+	});
+	
+	google.maps.event.addListener(drawingManager, 'polylinecomplete', function(polyline) {
+		var coor = polyline.getPath().getArray();
+		//alert(coordinates);	
+		type = 1;
 		newOverlay = polyline;	
 		
 		overlayComplete(coor);
@@ -105,8 +122,10 @@ function submitForm() {
 	} else {
 		var latSubmit = document.getElementById('latInput');
 		var lngSubmit = document.getElementById('lngInput');
+		var typeSubmit = document.getElementById('typeInput');
 		latSubmit.value = latPoints;
 		lngSubmit.value = lngPoints;
+		typeSubmit.value = type;
 		
 		//submit the form
 		document.forms["formPoi"].submit();
@@ -141,34 +160,11 @@ function createNewOverlay() {
 	
 	newOverlay.setMap(null);
 	
+	
 	drawingManager.setOptions({
 		drawingControl: true
 	});
 	
-}
-
-//populatePoi function
-function populatePoi() {
-	
-}
-
-//updatePoi function
-function updatePoi() {
-	alert("updated! //updatePoi function");
-	/*var xhttp;
-	if (window.XMLHttpRequest) {
-		xhttp = new XMLHttpRequest();
-	} else {
-		// code for IE6, IE5
-		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xhttp.onreadystatechange = function() {
-		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			//stuff here
-		}
-	};
-	xhttp.open("GET", /*stuff here/, true);
-	xhttp.send();*/
 }
 
 //isEmpty function
