@@ -28,7 +28,7 @@ function initialize() {
         position: myLatlng,
         map: map,
         draggable: true,
-		icon: new google.maps.MarkerImage(icon)
+	 icon: new google.maps.MarkerImage(icon)
     });
 };
 
@@ -179,23 +179,23 @@ function validateBlank(city, state, zipcode, latitude, longitude) {
     var message = new Array();
     var isFilled = true;
     if (city.length == 0) {
-        message.push("city")
+        message.push("city");
         isFilled = false;
     }
     if (state.length == 0) {
-        message.push("state")
+        message.push("state");
         isFilled = false;
     }
     if (zipcode.length == 0) {
-        message.push("zip")
+        message.push("zip");
         isFilled = false;
     }
     if (latitude.length == 0) {
-        message.push("latitude")
+        message.push("latitude");
         isFilled = false;
     }
     if (longitude.length == 0) {
-        message.push("longitude")
+        message.push("longitude");
         isFilled = false;
     }
     if (zipcode.length == 0 && latitude.length != 0 && longitude.length !=
@@ -213,8 +213,9 @@ function validateBlank(city, state, zipcode, latitude, longitude) {
         for (i = 0; i < message.length; i++) {
             fullMessage += "," + message[i]
 			//changes the input text border to make sure the user understands what to do
-			//fulfills a dynamic css requirement
+		
 			if(message[i]!=null){
+
 				document.getElementById(message[i]).style.borderColor="red";
 			}
 			
@@ -243,15 +244,15 @@ function validateAddress(city, state, zipcode) {
     var message = new Array();
     var isCorrect = true;
     if (resultCity == false) {
-        message.push("City");
+        message.push("city");
         isCorrect = false;
     }
     if (resultState == false) {
-        message.push("State");
+        message.push("state");
         isCorrect = false;
     }
     if (resultZipcode == false) {
-        message.push("Zipcode");
+        message.push("zip");
         isCorrect = false;
     }
     if (isCorrect == false) {
