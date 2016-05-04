@@ -2,15 +2,15 @@
 
 	/*
 	Author: Steven Nguyen
-	Date last modified: 05/02/2016
+	Date last modified: 05/04/2016
 	IS 448
 	Professor Sampath
 	This document will be used to check if an input email address is in the database.
 	*/
 
 	#connect to mysql database
-	#Natureseeker's database
-	$db = mysql_connect("localhost","root","root");
+	#Gloria's database
+	$db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
 	
 	#Steven's database
 	#$db = mysql_connect("studentdb-maria.gl.umbc.edu","snguyen5","natureseekers");
@@ -22,15 +22,17 @@
 	#Steven's database
 	#$er = mysql_select_db("snguyen5");
 	
-	#Natureseeker's database
-	$er = mysql_select_db("natureSeekers");
+	#Gloria's database
+	$er = mysql_select_db("xr43817");
 	
 	if(!$er)
 		exit("Error - could not select database");
 	
 	#select user_email from users;
 	#Constructs the query to match the login information
-	$constructed_query = "select user_email from USERS";
+	#$constructed_query = "select user_email from USERS";
+	
+	$constructed_query = "select user_email from users";
 	
 	#Execute query
 	$email_result = mysql_query($constructed_query);
