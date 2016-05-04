@@ -68,6 +68,13 @@ This document will be used to allow users to access our website.
 		<p class="login">
 			Username: <input type="text" id="user" name="Username" size="25"/><br /><br />
 			Password: <input type="password" id="pass" name="Password" size="25"/><br /><br />
+			<?php
+				if((($_SESSION['login_fail'] + 60 > time()))&&(!isset($_SESSION['user_id']))){
+			?>
+			<b>Your login combination was invalid. Please try again.</b><br />
+			<?php
+				}
+			?>
 			<form action="identify.php">
 				<input type="submit" id="loginSubmit" value="Login" onclick="validateLogin()" />
 			</form>
