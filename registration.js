@@ -1,3 +1,18 @@
+/*This page is the registration javascript page called registration.js. This page
+is used to validate input from the user and change the color of the title.
+Created by: Mark Cirincione
+Date of Creation: 4/15/16
+Last Date of Modification: 5/4/16 */
+
+function onText() {
+    var a = document.getElementById("header").style.backgroundColor="yellow";
+	var b = document.getElementById("header").style.textDecoration="underline";
+}
+
+function offText() {
+    var c = document.getElementById("header").style.backgroundColor="white";
+	var d = document.getElementById("header").style.textDecoration="none";
+}
 
 function checkUsername(inputString){
 	new Ajax.Request(

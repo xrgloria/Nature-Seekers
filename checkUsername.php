@@ -1,3 +1,10 @@
+<!--This page is the checkUsername php page called checkUsername.php. This page
+collects the form data from registration.html for the username field and makes
+sure they are not already being used in the database.
+Created by: Mark Cirincione
+Date of Creation: 4/25/16
+Last Date of Modification: 5/4/16 -->
+
 <?php
 	#connect to mysql database
 	$db = mysql_connect("studentdb-maria.gl.umbc.edu","markcir1","markcir1");

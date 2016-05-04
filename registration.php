@@ -6,7 +6,7 @@ username, password, and email address fields.
 It then inputs them into the database. 
 Created by: Mark Cirincione
 Date of Creation: 4/5/16
-Last Date of Modification: 4/3/16 -->
+Last Date of Modification: 5/4/16 -->
 
 <head>
 	<title>Registration PHP</title>
