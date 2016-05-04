@@ -28,7 +28,7 @@ html, body {
 }
 
 .poi {
-	height: 100px;
+	height: 75%;
 	overflow-y: scroll;
 	padding: 5px;
 }

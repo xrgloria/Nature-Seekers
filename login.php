@@ -1,9 +1,13 @@
+<?php
+	session_start();
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <!-- 
 Author: Steven Nguyen
-Date last modified: 05/02/2016
+Date last modified: 05/04/2016
 IS 448
 Professor Sampath
 This document will be used to allow users to access our website.
@@ -35,9 +39,9 @@ This document will be used to allow users to access our website.
 			</span>
 			<ul class="nav navbar-nav">
 				<li class = "active"><a href="#">Home</a></li>
-				<!-- If statement, if cookies are found, displays the rest of the navbar -->
+				<!-- If statement, if sessions are found, displays the rest of the navbar -->
 				<?php
-				if(isset($_COOKIE['LoggedIn'])){
+				if(isset($_SESSION['user_id'])){
 					?>
 				<li><a href="./points_of_interest.html ">Add Markers</a></li>
 				<li ><a href="#">View Route</a></li>
@@ -54,27 +58,29 @@ This document will be used to allow users to access our website.
 		
 		<!-- First header of the webpage -->
 		<h1 class="centerhead">
-			<!-- If statement, if cookies are found the user is greeted -->
-			<b>Welcome to Nature Seekers<?php
-				if(isset($_COOKIE['LoggedIn'])){
-				echo ", ".$_COOKIE['LoggedIn'];}
-			?>
-			</b>
+			<b>Welcome to Nature Seekers</b>
 		</h1>
-		<!-- Login form, if cookies are found the form is hidden -->
+		<!-- Login form, if session is found, the form is hidden -->
 		<?php
-			if(!isset($_COOKIE['LoggedIn'])){
+			if(!isset($_SESSION['user_id'])){
 		?>
 		<form action="login2.php" method="POST">
 		<p class="login">
 			Username: <input type="text" id="user" name="Username" size="25"/><br /><br />
 			Password: <input type="password" id="pass" name="Password" size="25"/><br /><br />
+			<?php
+				if((($_SESSION['login_fail'] + 60 > time()))&&(!isset($_SESSION['user_id']))){
+			?>
+			<b>Your login combination was invalid. Please try again.</b><br />
+			<?php
+				}
+			?>
 			<form action="identify.php">
 				<input type="submit" id="loginSubmit" value="Login" onclick="validateLogin()" />
 			</form>
 		</p>
 		
-		<!-- Links to assist problems logging in, if cookies are found the buttons are hidden -->
+		<!-- Links to assist problems logging in, if session is found, the buttons are hidden -->
 		<p class="login">
 			<input type="button" id="forgotButton" value="Forgot your Username?" onclick="forgotRedirect()" />
 			<input type="button" id="registerButton" value="Not a member yet?" onclick="registerRedirect()" /><br />

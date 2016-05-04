@@ -3,7 +3,7 @@ Author: Steven Nguyen
 Date last modified: 05/02/2016
 IS 448
 Professor Sampath
-This document will be used to validate the user input on login.php. This page also will be used to change CSS properties on login.php. FInally, this page will open links to other pages to provide assistance with logging in.
+This document will be used to validate the user input on login.php. This page also will be used to change CSS properties on login.php. Finally, this page will open links to other pages to provide assistance with logging in.
 */
 
 //Function to validate the user input

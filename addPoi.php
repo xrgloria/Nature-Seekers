@@ -37,6 +37,8 @@ $user = $_SESSION['user_id'];
 	
 	<body>
 		<?php
+			#do nothing if variables are blank
+			
 			#connect to mysql database
 			$db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
 
@@ -63,6 +65,8 @@ $user = $_SESSION['user_id'];
 			$latArray = explode(',', $lat);
 			$lngArray = explode(',', $lng);
 			
+			$type = $_POST['type'];
+			
 			if($privacy === "private") {
 				$private = true;
 			} else {
@@ -70,8 +74,8 @@ $user = $_SESSION['user_id'];
 			}
 
 			#construct a query insert overlay information
-			$constructed_query = "INSERT into OVERLAYS (type, overlay_name, description, user_id, private)
-				values (1, '$name', '$description', '$user', '$private')";
+			$constructed_query = "INSERT into OVERLAYS (type, overlay_name, activity_name, description, user_id, private)
+				values ('$type', '$name', '$activity', '$description', '$user', '$private')";
 								  
 			#Execute query
 			$result = mysql_query($constructed_query);
@@ -112,13 +116,13 @@ $user = $_SESSION['user_id'];
 				</span>
 				<!--Links for nav bar-->
 				<ul class=" nav navbar-nav">
-					<li><a href="login.html">Home</a></li>
-					<li><a href="search.html">Search</a></li>
-					<li class="active"><a href="points_of_interest.html">Add Markers</a></li>
-					<li><a href="route.html">View Route</a></li>
+					<li><a href="login.php">Home</a></li>
+					<li><a href="search.php">Search</a></li>
+					<li class="active"><a href="points_of_interest.php">Add Markers</a></li>
+					<li><a href="route.php">View Route</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+						<li><a href="login.php"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 					</ul>
 				</ul>
 			</div>
@@ -135,11 +139,16 @@ $user = $_SESSION['user_id'];
 					</div>
 					<div class="panel-body ">
 						<p>
-						<? echo "Successfully submitted a new point of interest:<br />Name: "
-							.$name."<br />Activity: ".$activity."<br />Description: ".$description."<br />Privacy: "
-							.$privacy."<br />-------BELOW IS FOR TESTING!----------<br />Lat: ".$lat."<br />Lng: ".$lng.
+						Successfully submitted a new point of interest:<br />
+						Name: <? echo $name; ?><br />
+						Activity: <? echo $activity; ?><br />
+						Description: <? echo $description; ?><br />
+						Privacy: <? echo $privacy; ?><br /><br />
+						<button onclick="window.location.href='points_of_interest.php'">Create Another Point of Interest</button>
+							
+							<!--testing"<br />-------BELOW IS FOR TESTING!----------<br />Lat: ".$lat."<br />Lng: ".$lng.
 							"<br />lat[0]".$latArray[0]."<br />lng[0]".$lngArray[0];
-							//add a link back to the previous page?>
+							//add a link back to the previous page?-->
 						</p>
 					</div>
 				</div>

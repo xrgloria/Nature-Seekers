@@ -1,8 +1,9 @@
 <?php
-
+	session_start();
+	
 	/*
 	Author: Steven Nguyen
-	Date last modified: 05/02/2016
+	Date last modified: 05/04/2016
 	IS 448
 	Professor Sampath
 	This document will be used to verify the user input from login.php.
@@ -14,9 +15,15 @@
 		exit();
 	}
 	
+	#Destroys all existing sessions before creating new ones.
+	/*if(isset($_SESSION)){
+		session_destroy();
+		unset($_SESSION);
+	}*/
+	
 	#connect to mysql database
-	#Natureseeker's database
-	$db = mysql_connect("localhost","root","root");
+	#Gloria's database
+	$db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
 	
 	#Steven's database
 	#$db = mysql_connect("studentdb-maria.gl.umbc.edu","snguyen5","natureseekers");
@@ -28,8 +35,8 @@
 	#Steven's database
 	#$er = mysql_select_db("snguyen5");
 	
-	#Natureseeker's database
-	$er = mysql_select_db("natureSeekers");
+	#Gloria's database
+	$er = mysql_select_db("xr43817");
 	if(!$er)
 		exit("Error - could not select database");
 	
@@ -42,7 +49,7 @@
 	#Steven's database
 	#$constructed_query = "select * from users where username = '$uname' and password = '$pword'";
 	
-	#Natureseeker's database
+	#Gloria's database
 	$constructed_query = "select * from USERS where user_name = '$uname' and password = '$pword'";
 	
 	#Execute query
@@ -59,12 +66,15 @@
 	#Returns the number of rows retrieved from the database that match the login query
 	$num_rows = mysql_num_rows($login_result);
 	
+	$rowArray = mysql_fetch_array($login_result);
+	
 	#If statement that assigns the proper destination to $newURL depending on the login result
 	if($num_rows == 1){
-		setcookie('LoggedIn', $uname, time()+86400, "/");
-		$newURL = "search.html";
+		$_SESSION['user_id'] = $rowArray[user_id];
+		$newURL = "search.php";
 		
 	}else{
+		$_SESSION['login_fail'] = time();
 		$newURL = "login.php";
 	}
 	

@@ -22,19 +22,7 @@ function validateEmail(inputString){
 //Function to display the response from emailCheck.php trhough the previous AJAX call
 function displayResult(ajax){
 	var r = ajax.responseText;
-	$("msgbox").innerHTML = r;
-	if(r == "Email in database."){
-		$("msgbox").style.backgroundColor="green";
-		$("msgbox").style.color="white";
-		$("msgbox").style.fontWeight="bold";
-		$("msgbox").focus();
-	}
-	else{
-		$("msgbox").style.backgroundColor="red";
-		$("msgbox").style.color="white";
-		$("msgbox").style.fontWeight="bold";
-		$("msgbox").focus();
-	}
+	$("msgbox").innerHTML = r;	
 }
 
 //Function to validate the user input email address

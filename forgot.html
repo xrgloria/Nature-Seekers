@@ -51,13 +51,10 @@ with that email address sent to it. AJAX MAY BE USED TO VERIFY AN EMAIL ADDRESS.
 			If you've forgotten your username, please input the email address that is associated with your account below. Afterwards, you will be notified of your username.
 		</p>
 		
-		<!-- Forgotten information email form -->
-		<form action="">
+		<!-- Forgotten information email input text field -->
 		<p class="centerText">
 			<b>Email address:</b> <input type="text" id="email" name="Email" size="25" onblur="validateEmail(this.value);" />
-			<form action="identify.php">
-				<input type="submit" value="Get Username" onclick="validateRecovery();" />
-			</form>
+			
 			<!-- msgbox to display AJAX response -->
 			<div id="msgbox" class="centerText"></div>
 		</p>
