@@ -15,6 +15,12 @@
 		exit();
 	}
 	
+	#Destroys all existing sessions before creating new ones.
+	/*if(isset($_SESSION)){
+		session_destroy();
+		unset($_SESSION);
+	}*/
+	
 	#connect to mysql database
 	#Gloria's database
 	$db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
@@ -64,12 +70,12 @@
 	
 	#If statement that assigns the proper destination to $newURL depending on the login result
 	if($num_rows == 1){
-		$_session['user_id'] = $rowArray[user_id];
+		$_SESSION['user_id'] = $rowArray[user_id];
 		$newURL = "search.php";
 		
 	}else{
+		$_SESSION['login_fail'] = time();
 		$newURL = "login.php";
-		//echo 'badLogin();';
 	}
 	
 	#Calls the Redirect function
