@@ -60,13 +60,16 @@
 	#Returns the number of rows retrieved from the database that match the login query
 	$num_rows = mysql_num_rows($login_result);
 	
+	$rowArray = mysql_fetch_array($login_result);
+	
 	#If statement that assigns the proper destination to $newURL depending on the login result
 	if($num_rows == 1){
-		$_session['user_id'];
+		$_session['user_id'] = $rowArray[user_id];
 		$newURL = "search.php";
 		
 	}else{
 		$newURL = "login.php";
+		//echo 'badLogin();';
 	}
 	
 	#Calls the Redirect function
