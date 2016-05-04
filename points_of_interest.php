@@ -1,7 +1,7 @@
 <?php
 session_start();
 //testing --> set user_id as 1 for username gngo
-$_SESSION['user_id'] = 1;
+//$_SESSION['user_id'] = 1;
 
 if(!isset($_SESSION['user_id'])){
 	header('Location: ./login.php');
@@ -59,13 +59,13 @@ $user = $_SESSION['user_id'];
 				</span>
 				<!--Links for nav bar-->
 				<ul class=" nav navbar-nav">
-					<li><a href="login.html">Home</a></li>
+					<li><a href="login.php">Home</a></li>
 					<li><a href="search.php">Search</a></li>
 					<li class="active"><a href="points_of_interest.html">Add Markers</a></li>
 					<li><a href="route.php">View Route</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+						<li><a href="login.php"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 					</ul>
 				</ul>
 			</div>
@@ -114,11 +114,19 @@ $user = $_SESSION['user_id'];
 							print("<p>
 								<strong>Name: </strong>$row_array[overlay_name]<br />
 								<strong>Activity: </strong>$row_array[activity_name]<br />
-								<strong>Description: </strong>$row_array[description]
-								<span>
-									<button type=\"button\" class=\"btn btn-primary btn-xs pull-right\">Remove</button>
-								</span>
-								</p>");
+								<strong>Description: </strong>$row_array[description]<br />");
+							if($row_array[private]) {
+								print("<strong>Privacy: </strong>Private");
+							} else {
+								print("<strong>Privacy: </strong>Public");
+							}
+							if($row_array[private]) {
+								print("<span>
+										<button type=\"button\" class=\"btn btn-primary btn-xs pull-right\"
+										onclick=\"deletePoi('$row_array[overlay_id]');\">Remove</button>
+									</span>");
+							}
+							print("</p>");
 						}
 						print("</div>");
 						?>
@@ -175,14 +183,11 @@ $user = $_SESSION['user_id'];
 							<textarea class="form-control" rows="5" name="description" id="description"></textarea>
 							<div class="radio">
 								<label><input type="radio" name="privacy" value="public">Public</label>
-							</div>
-							<div class="radio">
-							<label><input type="radio" name="privacy" value="private">Private</label>
+								<label><input type="radio" name="privacy" value="private">Private</label>
 							</div>
 							<input type="hidden" id="latInput" name="lat">
 							<input type="hidden" id="lngInput" name="lng">
 							<input type="hidden" id="typeInput" name="type">
-							<br />
 							<button type="button" onclick="submitForm();" class="btn btn-primary">Create</button>
 							<button type="reset" class="btn btn-primary">Discard</button>
 						</form>

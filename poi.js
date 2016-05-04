@@ -167,6 +167,12 @@ function createNewOverlay() {
 	
 }
 
+//deletePoi
+function deletePoi(id) {
+	alert("id= " + id + "\nRemoving now!");
+	//implement ajax to connect to server and delete and remove from list
+}
+
 //isEmpty function
 function isEmpty(value) {
 	return (value == null || value.length === 0);
