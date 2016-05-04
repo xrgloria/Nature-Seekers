@@ -56,9 +56,14 @@
 	#retrieve value of parameter by name 'email' and store the value in the local variable $chkEmail
 	$chkEmail=$_GET["email"];
 	
+	#Query to retrieve password of specified email.
+	$pwdQuery = "select password from USERS where user_email = '$chkEmail'";
+	$pwdResult = mysql_query($pwdQuery);
+	$pwdRow = mysql_fetch_array($pwdResult);
+	
 	#Checks user input to see if their email is in the database
 	if (in_array($chkEmail,$emailArray)){
-		$response="Email in database.";
+		$response="Email in database. Your password is " . $pwdRow[password] . ".";
 	}
 	else{
 		$response="Email not in database.";
