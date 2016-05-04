@@ -1,4 +1,4 @@
-<?php header('Location: .login.html'); ?>
+<?php header('Location: login.php'); ?>
 <html xmlns = "http://www.w3.org/1999/xhtml">
 
 <!--This page is the registration php page called registration.php. This page
