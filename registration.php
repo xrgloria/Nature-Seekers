@@ -1,3 +1,4 @@
+<?php header('Location: .login.html'); ?>
 <html xmlns = "http://www.w3.org/1999/xhtml">
 
 <!--This page is the registration php page called registration.php. This page
@@ -17,18 +18,18 @@ Last Date of Modification: 5/4/16 -->
 
 <?php
 	#connect to mysql database
-	$db = mysql_connect("studentdb-maria.gl.umbc.edu","markcir1","markcir1");
+	$db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
 
 	if(!$db) {
 		echo 'Could not connect using studentdb-maria.gl.umbc.edu: ' . mysql_error();
 		
-		$db = mysql_connect("studentdb-maria.gl.umbc.edu","markcir1","markcir1");
+		$db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
 		if(!$db)
 			die('Could not connect using localhost: ' . mysql_error());
 	}	
 
 	#select database root
-	$er = mysql_select_db("markcir1");
+	$er = mysql_select_db("xr43817");
 	if(!$er)
 		exit("Error - could not select database");
 
@@ -65,7 +66,7 @@ Last Date of Modification: 5/4/16 -->
 	#echo $result;
 	
 
-	//header('Location: ./search.php');
+	
 ?>
 </body>
 </html>
