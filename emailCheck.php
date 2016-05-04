@@ -30,9 +30,9 @@
 	
 	#select user_email from users;
 	#Constructs the query to match the login information
-	#$constructed_query = "select user_email from USERS";
+	$constructed_query = "select user_email from USERS";
 	
-	$constructed_query = "select user_email from users";
+	#$constructed_query = "select user_email from users";
 	
 	#Execute query
 	$email_result = mysql_query($constructed_query);
