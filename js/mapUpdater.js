@@ -44,8 +44,6 @@ function addToRoute(id){
 	} else if(routeList.LastChild.class == 'route-B'){
 		classColor = "route-A";
 	}
-	alert('<div class="' + classColor + '" id="' + id + '">');
-	alert('<b>' + overlays[id]['OVERLAY_NAME'] + '</b><br />');
 	routeList.innerHTML += '<div class="' + classColor + '" id="' + id + '">' + '<b>' + overlays[id]['OVERLAY_NAME'] + '</b><br />' + overlays[id]['ACTIVITY_NAME'] + '<br />' + '<button type="button" class="btn btn-primary btn-xs removeButton" onclick="removeOverlay(' + id + ')">Remove</button><br />' + '<input type="hidden" name="overlayID[]" value="' + id + '"/></div>';
 	
 }
@@ -53,6 +51,7 @@ function addToRoute(id){
 
 function removeOverlay(id){
 	var overlay = document.getElementById(id);
+	overlay.style.visibility = "hidden";
 	overlay.remove();
 }
 
