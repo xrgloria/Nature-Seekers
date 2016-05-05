@@ -1,6 +1,3 @@
-<!--Luke Schubert
-	IS448
--->
 <?php
 /*Handles checking the user being logged in*/
 
