@@ -26,8 +26,8 @@ body {
 }
 
 #map {
-	width: 80%;
-	height: 75%;
+	width: 100%;
+	height: 657px;
+    border:solid #335216 .5em; 
 	margin: auto;
 }
-
