@@ -10,14 +10,9 @@ $er = mysql_select_db("xr43817");
 if(!$er)
 	exit("Error - could not select database");
 //$userID = $_SESSION['user'];
-$latitudeTop = mysql_real_escape_string(htmlspecialchars($_GET['latitudeTop']));
-$longitudeLeft = mysql_real_escape_string(htmlspecialchars($_GET['longitudeLeft']));
-$latitudeBottom = mysql_real_escape_string(htmlspecialchars($_GET['latitudeBottom']));
-$longitudeRight = mysql_real_escape_string(htmlspecialchars($_GET['longitudeRight']));
+
 $sql = "SELECT O.OVERLAY_ID, O.TYPE, O.ACTIVITY_NAME, O.OVERLAY_NAME
 		FROM OVERLAYS O ORDER BY O.OVERLAY_ID;";
-		/*WHERE O.OVERLAY_ID IN (SELECT OVERLAY_ID FROM POINTS WHERE LATITUDE BETWEEN $latitudeBottom AND $latitudeTop 
-			AND LONGITUDE BETWEEN $longitudeLeft AND $longitudeRight)*/
 $result = mysql_query($sql) or die(mysql_error());
 
 
@@ -38,7 +33,7 @@ if (mysql_num_rows($result) > 0) {
 		$numOfRowsPoint = mysql_num_rows($pointResult);
 		$counterPoint = 0;
 		while($pointRow = mysql_fetch_array($pointResult)) {
-			echo '{"lat":'. $pointRow['LATITUDE'] . ',"lng":' . $pointRow['LONGITUDE'] . '}' ;
+		echo '{"lat":'. $pointRow['LATITUDE'] . ',"lng":' . $pointRow['LONGITUDE'] . '}' ;
 			if (++$counterPoint == $numOfRowsPoint) {
 			} else {
 			echo ',';

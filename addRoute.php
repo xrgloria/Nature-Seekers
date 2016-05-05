@@ -1,15 +1,15 @@
 <?php
 session_start();
-$db = mysql_connect("localhost","root","root");
+$db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
 
 if(!$db)
 	exit("Error - could not connect to MySQL");
 
 #select database natureseekers
-$er = mysql_select_db("natureSeekers");
+$er = mysql_select_db("xr43817");
 if(!$er)
 	exit("Error - could not select database");
-$user = $_SESSION['user_id'];
+$user = 1 /*$_SESSION['user_id']*/;
 $routeQuery = "INSERT INTO ROUTES(USER_ID) VALUES($user);";
 $result = mysql_query($routeQuery);
 $routeID = mysql_insert_id();
@@ -46,9 +46,9 @@ foreach ($overlays as $entry)
 			Nature Seekers
 		</span>
 		<ul class="nav navbar-nav">
-			<li><a href="./login.html">Home</a></li>
+			<li><a href="./login.php">Home</a></li>
 			<li><a href="./search.php">Search Map</a></li>
-			<li><a href="./points_of_interest.html">Add Markers</a></li>
+			<li><a href="./points_of_interest.php">Add Markers</a></li>
 			<li><a href="./route.php">View Route</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
@@ -59,7 +59,7 @@ foreach ($overlays as $entry)
 <br /><br />
 <div class="content">
 Your route has been succesfully created. Here is the link to the route
-<a href="/route.php?routeID=<?php echo $routeID ?>">
+<a href="./route.php?routeID=<?php echo $routeID ?>">
 	www.natureseekers.ddns.net/route.php?routeID=<?php echo $routeID ?>
 </a>
 </div>

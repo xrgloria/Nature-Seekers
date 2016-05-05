@@ -19,7 +19,7 @@ if(!isset($_SESSION['user'])){
 	<link rel="stylesheet" href="./style/lavish-bootstrap.css">
 	<link rel="stylesheet" href="./style/luke.css">
 
-	<!-- jQuery library -->
+	<!-- jQuery library  for bootstrap-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 	<!-- Latest compiled JavaScript -->
@@ -35,9 +35,9 @@ if(!isset($_SESSION['user'])){
 			Nature Seekers
 		</span>
 		<ul class="nav navbar-nav">
-			<li><a href="./login.html">Home</a></li>
+			<li><a href="./login.php">Home</a></li>
 			<li><a href="./search.php">Search Map</a></li>
-			<li><a href="./points_of_interest.html">Add Markers</a></li>
+			<li><a href="./points_of_interest.php">Add Markers</a></li>
 			<li class="active"><a href="#">View Route</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
@@ -52,44 +52,46 @@ if(!isset($_SESSION['user'])){
 			<div class="panel-heading">
 				<h3>Overlays</h3>
 			</div>
-			<div class="panel-body routeContent">
+			<div class="panel-body routeContent" id="overlayList">
 				<?php
+				$overlayPoints = array();
 				if(isset($_GET['routeID']))
 				{
-					$db = mysql_connect("localhost","root","root");
-					
+					$db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
 					if(!$db)
 						exit("Error - could not connect to MySQL");
 					
 					#select database natureseekers
-					$er = mysql_select_db("natureSeekers");
+					$er = mysql_select_db("xr43817");
 					if(!$er)
 						exit("Error - could not select database");
 					$routeID = mysql_real_escape_string(htmlspecialchars($_GET['routeID']));
-					$selectQuery = "SELECT * FROM ROUTE OVERLAYS WHERE ROUTE_ID = $routeID";
+					$selectQuery = "SELECT O.OVERLAY_NAME,O.ACTIVITY_NAME, P.LATITUDE, P.LONGITUDE
+									FROM OVERLAYS O
+									JOIN ROUTE_OVERLAYS R
+									ON R.OVERLAY_ID = O.OVERLAY_ID
+									JOIN POINTS P
+									ON P.OVERLAY_ID = O.OVERLAY_ID
+									WHERE R.ROUTE_ID= $routeID";
 					$result = mysql_query($selectQuery);
 					
 					$divClass = True;
 					if (mysql_num_rows($result) > 0) {
 						while($row = mysql_fetch_array($result)) {
-							echo '<div class="' . ($divClass) ? 'route-A' : 'route-B' . '">';
+							
 							$overlayID = $row['OVERLAY_ID'];
-							$activityQuery = "SELECT A.ACTIVITY_NAME FROM ACTIVITIES A
-											  JOIN OVERLAY_ACTIVITES O
-											  ON A.ACTIVITY_ID = O.ACTIVITY_ID
+							echo '<div class="' . ($divClass) ? 'route-A' : 'route-B' . ' id="'. $overlayID . '">';
+							$activityQuery = "SELECT O.OVERLAY_NAME, O.ACTIVITY_NAME FROM OVERLAYS O
 											  WHERE O.OVERLAY_ID = $overlayID";
 							$activityResults = mysql_query($activityQuery);
-							if (mysql_num_rows($activityResults) > 0) {
-								while($activityRow = mysql_fetch_array($activityResults)) {
-									echo $activityRow['ACTIVITY_NAME'] . ' ';
-								}
-							} else {
-							   
-							}
+							echo '<b>' . $activityResults['OVERLAY_NAME'] . '</b><br />';
+							echo $activityResults['ACTIVITY_NAME'];
 							echo '<br />';
-							echo '<button type="button" class="btn btn-primary btn-xs removeButton">Remove</button><br />';
+							echo '<button type="button" class="btn btn-primary btn-xs removeButton" onclick="removeOverlay(' . $overlayID . ')">Remove</button><br />';
 							$divClass = !$divClass;
-							echo '<input type="hidden" name="overlayID[]" value="$overlayID"/>';
+							echo '<input type="hidden" name="overlayID[]" value="' . $overlayID . '"/>';
+							echo '</div>';
+							array_push($overlayPoints, array( $activityResults['LATITUDE'],$activityResults['LONGITUDE']));
 						}
 						
 					} else {
@@ -99,17 +101,33 @@ if(!isset($_SESSION['user'])){
 				?>
 			</div>
 		</div>
-			<!--To be used for javascript to add overlays-->
-			<input type="hidden" name="overlayID[]" />
-			<input type="submit" class="btn btn-primary btn-xs"></input>
+			<?php
+				if(!isset($_GET['routeID'])){
+					echo '<input type="submit" class="btn btn-primary btn-xs"></input>';
+				}
+			?>
 		</form>
 	</div>
 	<div class="col-sm-9 fillHeight">
 		<div id="map"></div>
 	</div>
 </div>
-
-<script src="./js/mapUpdater.js"></script>
+<?php
+	if(!isset($_GET['routeID'])){
+		echo '<script src="./js/mapUpdater.js"></script>';
+	}else {
+		echo '<script src="./js/loadRoute.js"></script>';
+	}
+?>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABvCBMSTZPK8Wllny5VJVD0cujfAaWZYk&callback=initMap&libraries=geometry" async defer></script>
+<?php
+if(isset($_GET['routeID'])){
+		echo '<script >';
+		foreach($overlayPoints as $pair){
+			echo 'addOverlays(' . $pair[0] . ',' . $pair[1]. ');';
+		}
+		echo '</script';
+	}
+?>
 </body>
 </html>
