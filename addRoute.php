@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*Created by Luke Schubert*/
 $db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
 
 if(!$db)

@@ -1,3 +1,4 @@
+ /*Created by Luke Schubert*/
  var map;
  var infoWindows = [];
 function initMap() {

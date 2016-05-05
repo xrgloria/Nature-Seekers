@@ -1,4 +1,5 @@
 <?php
+/*Created by Luke Schubert*/
 /*Handles checking the user being logged in*/
 
 session_start();
