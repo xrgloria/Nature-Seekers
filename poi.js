@@ -11,6 +11,7 @@
 */
 
 var map;
+var name;
 var type;
 var newOverlay;
 var latPoints = [];
@@ -116,8 +117,13 @@ function initMap() {
 function submitForm() {
 	//alert("Submitting form");
 	//check if lat and lng points are empty
+	var nameSubmit = document.getElementById('name');
+	name = nameSubmit.value;
+	//alert("name= " + name);
 	if(isEmpty(latPoints) || isEmpty(lngPoints)) {
 		alert("Please mark your Point of Interest before submitting.");
+	} else if(isEmpty(name)) {
+		alert("Please enter a name for your point of interest.");
 	//if they are filled submit the form
 	} else {
 		var latSubmit = document.getElementById('latInput');
@@ -170,10 +176,20 @@ function createNewOverlay() {
 //deletePoi
 function deletePoi(id) {
 	alert("id= " + id + "\nRemoving now!");
+	
 	//implement ajax to connect to server and delete and remove from list
 }
 
 //isEmpty function
 function isEmpty(value) {
 	return (value == null || value.length === 0);
+}
+
+//quick validation
+function validateName() {
+	var x = document.forms["myForm"]["fname"].value;
+    if (x == null || x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
 }

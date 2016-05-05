@@ -109,6 +109,7 @@ $user = $_SESSION['user_id'];
 							print "<p> . $error . </p>";
 							exit;
 						}
+						
 						print("<div class=\"poi\">");
 						while($row_array = mysql_fetch_array($result)){
 							print("<p>
@@ -122,7 +123,7 @@ $user = $_SESSION['user_id'];
 							}
 							if($row_array[private]) {
 								print("<span>
-										<button type=\"button\" class=\"btn btn-primary btn-xs pull-right\"
+										<button type=\"button\" class=\"btn btn-delete btn-xs pull-right\"
 										onclick=\"deletePoi('$row_array[overlay_id]');\">Remove</button>
 									</span>");
 							}
@@ -189,7 +190,7 @@ $user = $_SESSION['user_id'];
 							<input type="hidden" id="lngInput" name="lng">
 							<input type="hidden" id="typeInput" name="type">
 							<button type="button" onclick="submitForm();" class="btn btn-primary">Create</button>
-							<button type="reset" class="btn btn-primary">Discard</button>
+							<button type="reset" class="btn btn-delete">Discard</button>
 						</form>
 					</div>
 				</div>

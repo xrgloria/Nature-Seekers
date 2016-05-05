@@ -47,3 +47,19 @@ html, body {
 	margin: auto;
 }
 
+.btn-delete {
+    background: #cc0000;
+    color: #ffffff;
+}
+ 
+.btn-delete:hover, .btn-delete:focus, .btn-delete:active, .btn-delete.active, .open > .dropdown-toggle.btn-delete {
+    background: #800000;
+	color: #ffffff;
+}
+ 
+.btn-delete:active, .btn-delete.active {
+    background: #ff9999;
+	color: #ffffff;
+    box-shadow: none;
+}
+
