@@ -70,7 +70,7 @@ You can test other things, but either City, State, Zipcode are all required or l
                     <a href="./search.php">View Map</a>
                 </li>
                 <li>
-                    <a href="./points_of_interest.html">Add Markers</a>
+                    <a href="./points_of_interest.php">Add Markers</a>
                 </li>
                 <li>
                     <a href="#">View Route</a>
