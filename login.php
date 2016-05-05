@@ -43,8 +43,9 @@ This document will be used to allow users to access our website.
 				<?php
 				if(isset($_SESSION['user_id'])){
 					?>
-				<li><a href="./points_of_interest.html ">Add Markers</a></li>
-				<li ><a href="#">View Route</a></li>
+				<li><a href="./search.php ">Search Map</a></li>
+				<li><a href="./points_of_interest.php ">Add Markers</a></li>
+				<li ><a href="./route.php">View Route</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 		  <li><a href="./logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
