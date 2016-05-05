@@ -6,6 +6,7 @@ function initMap() {
 	  center: {lat: 38.940965, lng: -77.127542},
 	  zoom: 14
 	});
+	addAllMarkers();
 }
 
 
@@ -14,7 +15,6 @@ function addOverlays(lat, lng){
 			map: map,
 			position: {lat: lat, lng: lng}
 			});
-		listenerAdd(i, newOverlay)
 }
 
 
