@@ -73,7 +73,7 @@ You can test other things, but either City, State, Zipcode are all required or l
                     <a href="./points_of_interest.php">Add Markers</a>
                 </li>
                 <li>
-                    <a href="#">View Route</a>
+                    <a href="./route.php">View Route</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
