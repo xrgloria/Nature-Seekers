@@ -2,7 +2,7 @@
 /*Handles checking the user being logged in*/
 
 session_start();
-if(!isset($_SESSION['user_id'])){
+if(!isset($_SESSION['user_id'] $$ !isset($_GET['routeID'])){
 	header('Location: ./login.php');
 }
 ?>
@@ -51,9 +51,9 @@ if(!isset($_SESSION['user_id'])){
 			</div>
 			<div class="panel-body routeContent" id="overlayList">
 				<?php
-				$overlayPoints = array();
 				if(isset($_GET['routeID']))
 				{
+					$overlayPoints = array();
 					$db = mysql_connect("studentdb-maria.gl.umbc.edu","xr43817","xr43817");
 					if(!$db)
 						exit("Error - could not connect to MySQL");
