@@ -7,7 +7,7 @@
 
 <!-- 
 Author: Steven Nguyen
-Date last modified: 05/04/2016
+Date last modified: 05/09/2016
 IS 448
 Professor Sampath
 This document will be used to allow users to access our website.
@@ -43,9 +43,8 @@ This document will be used to allow users to access our website.
 				<?php
 				if(isset($_SESSION['user_id'])){
 					?>
-				<li><a href="./search.php ">Search Map</a></li>
-				<li><a href="./points_of_interest.php ">Add Markers</a></li>
-				<li ><a href="./route.php">View Route</a></li>
+				<li><a href="./points_of_interest.html ">Add Markers</a></li>
+				<li ><a href="#">View Route</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 		  <li><a href="./logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -83,7 +82,7 @@ This document will be used to allow users to access our website.
 		
 		<!-- Links to assist problems logging in, if session is found, the buttons are hidden -->
 		<p class="login">
-			<input type="button" id="forgotButton" value="Forgot your Username?" onclick="forgotRedirect()" />
+			<input type="button" id="forgotButton" value="Forgot your Password?" onclick="forgotRedirect()" />
 			<input type="button" id="registerButton" value="Not a member yet?" onclick="registerRedirect()" /><br />
 		</p>
 		
